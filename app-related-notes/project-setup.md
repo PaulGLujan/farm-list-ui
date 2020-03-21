@@ -29,7 +29,8 @@ rm -rf .git
 ### Clientside Deployment
 
 https://coderrocketfuel.com/article/deploy-a-create-react-app-website-to-digitalocean#create-site-section
-Copy content of reactjs app's public directory into the public directory of the expressjs  app
+
+run: `npm run build` then copy content of reactjs app's public directory into the public directory of the expressjs  app
 favicon.ico
 manifest.json
 logo512.png
@@ -41,6 +42,7 @@ asset-manifest.json
 static
 precache-manifest.3feb991588678a7c1620b2f79b366b18.js
 
+No need to install react on the server.  The build bundle should just run-- like magic.
 
 ### Severside setup
 [Express application generator](https://expressjs.com/en/starter/generator.html)
