@@ -1,0 +1,11 @@
+# ignore all files/directories with which match these
+**/.DS_Store
+**.log
+**/node_modules
+
+**/.env
+**/.pgpass
+**/config.json
+
+# recursively ignore directory:
+example/
