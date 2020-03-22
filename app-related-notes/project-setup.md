@@ -1,5 +1,19 @@
+##### Ch1.B.
 
-##### Terminal commands
+Edited nginx .conf file to send visitors to our lp/landingpage expressjs route, which will serve static content (our landing page)
+- https://testsite007.ml/ is now showing a static content page.  
+  - We can start building out a landing page here.  
+  - Nginx proxy_passed to localhost:3000/lp/landingpage which is an expressjs route, which the visitor is passed to, when they access "/" which is the domain root
+  - Example:  
+``` 
+location / {
+  ...other_settings...
+  proxy_pass http://localhost:3000/lp/landingpage;
+  ...other_settings...
+}
+```
+______________________________________
+##### Ch1.A. Getting setup
 (note: using mac os)
 
 Move into your project directory and create a directory for app project directories. Alongside it you might also want a directory for project-notes, test-projects, etc.

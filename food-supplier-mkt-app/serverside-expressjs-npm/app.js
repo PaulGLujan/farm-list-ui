@@ -7,6 +7,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var mockDataRoute = require('./routes/mockDataRoute');
+var landingPageRoutes = require('./routes/landingPageRoutes');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(middleware);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/v1/mock', mockDataRoute);
+app.use('/lp', landingPageRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
