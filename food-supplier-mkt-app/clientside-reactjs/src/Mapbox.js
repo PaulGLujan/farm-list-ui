@@ -5,7 +5,7 @@ import mapboxgl from 'mapbox-gl';
 class Mapbox extends React.Component {
   componentDidMount() {
     // Initialize MapBox Map
-    mapboxgl.accessToken = 'pk.eyJ1IjoicjBtaWxsZSIsImEiOiJjazgyYmpqcmYwMGNjM21vOXQwbXp5dTl2In0.YOoLj35BMWygemmLevPuwQ';
+    mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_TOKEN
 
     const map = new mapboxgl.Map({
       container: 'mapbox-map',
