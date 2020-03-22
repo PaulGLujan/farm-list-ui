@@ -9,3 +9,4 @@
 
 # recursively ignore directory:
 example/
+.vim.custom
