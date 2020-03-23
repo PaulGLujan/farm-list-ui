@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Mapbox.css';
 import mapboxgl from 'mapbox-gl';
 import Airtable from 'airtable';
+// import process from './../../env.json' // <-- Please leave this in, so it can be accesed in v0.0.2-(react-webpack).  Can just leave it commented out and I'll comment it in,
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_TOKEN
 
