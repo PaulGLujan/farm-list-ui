@@ -1,84 +1,78 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Mapbox.css';
 import mapboxgl from 'mapbox-gl';
+import Airtable from 'airtable';
 
-class Mapbox extends React.Component {
-  constructor(props) {
-    super(props);
-    const markers = {}
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_TOKEN
 
-    this.state = {
-      // San Francisco Coordinates
-      lng: -122.420679,
-      lat: 37.772537,
-      zoom: 9,
-      markers: markers
-    };
+function airtableFetchMarkers(map) {
+	const base = new Airtable({apiKey: 'key9CJdcEkG2Ymiur'}).base('appDk0v3oHfD3Bjf6');
 
-    this.map = null;
-  }
+  base('Locations').select({
+    view: "Grid view"
+  }).eachPage(function page(records, fetchNextPage) {
+    // This function (`page`) will get called for each page of records.
+    records.forEach(function(record) {
+      if (record.fields.Longitude && record.fields.Latitude) {
+        const coordinates = [record.fields.Longitude, record.fields.Latitude];
 
-  componentDidMount() {
-    // Initialize MapBox Map
-    mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_TOKEN
+        // make a marker and add to the map
+        new mapboxgl.Marker()
+        .setLngLat(coordinates)
+        .addTo(map);
 
-    this.map = new mapboxgl.Map({
-      container: this.mapContainer,
-      style: 'mapbox://styles/mapbox/streets-v9',
-      center: [this.state.lng, this.state.lat],
-      zoom: this.state.zoom,
+        console.log('Retrieved', record.get('Name'));
+      }
     });
 
-    this.map.on('move', () => {
-      this.setState({
-        lng: this.map.getCenter().lng.toFixed(4),
-        lat: this.map.getCenter().lat.toFixed(4),
-        zoom: this.map.getZoom().toFixed(2)
-      });
-    });
-
-    this.forceUpdate();
-  }
-
-  componentDidUpdate() {
-    const map = this.map
-    if (map) {
-      // add markers to map
-      const newMarkers = {}
-
-      for (let [key, marker] of Object.entries(this.props.markers)) {
-        let hashString = marker.geometry.coordinates[0] + "," + marker.geometry.coordinates[1]
-
-        if (!(hashString in this.state.markers)) {
-          console.log('creating new marker ' + hashString);
-
-          // make a marker and add to the map
-          new mapboxgl.Marker()
-            .setLngLat(marker.geometry.coordinates)
-            .addTo(map);
-
-          newMarkers[hashString] = marker
-        }
-      }
-
-      if (Object.keys(newMarkers).length) {
-        this.setState({
-          markers: Object.assign(this.state.markers, newMarkers)
-        })
-      }
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        <div className="sidebarStyle">
-          <div>Longitude: {this.state.lng} | Latitude: {this.state.lat} | Zoom: {this.state.zoom}</div>
-        </div>
-        <div ref={el => this.mapContainer = el} className="mapContainer" />
-      </div>
-    );
-  }
+    // To fetch the next page of records, call `fetchNextPage`.
+    // If there are more records, `page` will get called again.
+    // If there are no more records, `done` will get called.
+    fetchNextPage();
+  }, function done(err) {
+    if (err) { console.error(err); return; }
+  });
 }
 
-export default Mapbox;
+export default function Mapbox(props) {
+  let map = null;
+  const [view, setView] = useState({
+    // Default Bay Area coordinates
+    lng: -122.420679,
+    lat: 37.772537,
+    zoom: 9,
+  })
+  const mapContainer = useRef(null); 
+
+  // Initialize MapBox Map
+  useEffect(() => {
+    map = new mapboxgl.Map({
+      container: mapContainer.current,
+      style: 'mapbox://styles/mapbox/streets-v9',
+      center: [view.lng, view.lat],
+      zoom: view.zoom,
+    });
+
+    map.on('move', () => {
+      setView({
+        lng: map.getCenter().lng.toFixed(4),
+        lat: map.getCenter().lat.toFixed(4),
+        zoom: map.getZoom().toFixed(2)
+      });
+    });
+  }, [])
+
+	// FetchAirtable
+  useEffect(() => {
+		airtableFetchMarkers(map);
+	}, [])
+
+  return (
+    <div>
+      <div className="sidebarStyle">
+        <div>Longitude: {view.lng} | Latitude: {view.lat} | Zoom: {view.zoom}</div>
+      </div>
+      <div ref={mapContainer} className="mapContainer" />
+    </div>
+  );
+}
