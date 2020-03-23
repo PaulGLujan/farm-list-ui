@@ -2,25 +2,11 @@ import React from 'react';
 import './App.css';
 import Mapbox from './Mapbox.js'
 
-class App extends React.Component {
-  componentDidMount() {
-  }
-  
-  render() {
-    const markers = [
-      {
-        geometry: {
-          coordinates: [-122.420679, 37.772537],
-        }
-      }
-    ]
+export default function App(props) {
 
-    return (
-      <div className="App">
-        <Mapbox markers={markers} />
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <Mapbox />
+    </div>
+  );
 }
-
-export default App;
