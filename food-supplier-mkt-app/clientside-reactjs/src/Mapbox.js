@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import './Mapbox.css';
 import mapboxgl from 'mapbox-gl';
 import Airtable from 'airtable';
+import { createUseStyles } from 'react-jss';
 // import process from './../../env.json' // <-- Please leave this in, so it can be accesed in v0.0.2-(react-webpack).  Can just leave it commented out and I'll comment it in,
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_TOKEN
@@ -35,7 +35,7 @@ function airtableFetchMarkers(map) {
   });
 }
 
-export default function Mapbox(props) {
+const Mapbox = (props) => {
   let map = null;
   const [view, setView] = useState({
     // Default Bay Area coordinates
@@ -68,12 +68,23 @@ export default function Mapbox(props) {
 		airtableFetchMarkers(map);
 	}, [])
 
+  const classes = useStyles();
+
   return (
     <div>
-      <div className="sidebarStyle">
-        <div>Longitude: {view.lng} | Latitude: {view.lat} | Zoom: {view.zoom}</div>
-      </div>
-      <div ref={mapContainer} className="mapContainer" />
+      <div ref={mapContainer} className={classes.mapContainer} />
     </div>
   );
 }
+
+const useStyles = createUseStyles({
+  mapContainer: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    overflow: 'hidden',
+    visibility: 'inherit'
+  }
+});
+
+export default Mapbox;
