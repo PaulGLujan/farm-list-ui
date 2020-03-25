@@ -33,7 +33,9 @@ Our first MVP Goal is a visual & data platform which allow suppliers and wholesa
 - For Mapping -- Talk to Bobby if you're interested in working on map related stuff, just to get an intro to the plan there with web-gl, as he has experience with Mapping technology, GeoJson, web-gl, etc.
 
 Views -- (Feel free to code up your own version, we then we can compare ideas) (note: "Farm" is short for "Food Supplier")
+
 #. Current basis - WorkingNameForUi 
+
 1. Paul's sketch - **"Food Finder Form/Landing Page/Intro page"**
 2. Paul's sketch - **"Main Map Page: Map Overview w/ Search Filter Bar"** 
 3. Patrick's sketch - **"Farms Aggregate View: Local Food Supplies news feed, Local Minimap of nearby farms, Data table"** based on proximity entered into search/from panning map -- from view of Wholesale Buyer, General Public, FEMA Purchasing Food Rep, etc.
