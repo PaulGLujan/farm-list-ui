@@ -9,7 +9,9 @@ const App = props => {
   const classes = useStyles();
   return (
     <Layout>
-      <Header>Save Our Farms</Header>
+      <Header className={classes.header}>
+        <h1> Save Our Farms</h1>
+      </Header>
       <Content>
         <Mapbox />
         <div className={classes.cardPadding}>
@@ -29,6 +31,9 @@ const App = props => {
 };
 
 const useStyles = createUseStyles({
+  header: {
+    backgroundColor: 'white'
+  },
   cardPadding: {
     padding: 20
   },
