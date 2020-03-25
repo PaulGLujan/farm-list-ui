@@ -7,6 +7,7 @@
 ![main-map-view-with-search-filters](./../../app-related-notes/sketches-freeform/main-map-view-with-search-filters--freeform-sketch-1.jpg)
 
 ![local-farm-aggregate-view](./../../app-related-notes/sketches-freeform/local-farm-aggregate-view--freeform-sketch-1.jpg)
+
 ![local-farm-individual-view](./../../app-related-notes/sketches-freeform/local-farm-individual-view--freeform-sketch-1.jpg)
 
 
