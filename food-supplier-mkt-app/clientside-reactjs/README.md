@@ -1,3 +1,18 @@
+### Sketches for inspiration:
+
+![initial-sketch-farm-main-map](./../../app-related-notes/sketches-digital/initial-sketch-farm-main-map--digital-sketch-1.jpg)
+
+![find-food-form-or-landing-page](./../../app-related-notes/sketches-freeform/find-food-form-or-landing-page--freeform-sketch-1.jpg)
+
+![main-map-view-with-search-filters](./../../app-related-notes/sketches-freeform/main-map-view-with-search-filters--freeform-sketch-1.jpg)
+
+![local-farm-aggregate-view](./../../app-related-notes/sketches-freeform/local-farm-aggregate-view--freeform-sketch-1.jpg)
+
+
+
+____
+## Original ReactJS README.md file
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
