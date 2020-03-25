@@ -3,6 +3,9 @@
 **.log
 **/node_modules
 
+# ignoring png files for now. we'll use .jpg in documentation to keep it lite
+**/png-files 
+
 # **/.env
 **/.pgpass
 **/config.json
