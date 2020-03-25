@@ -70,11 +70,7 @@ const Mapbox = (props) => {
 
   const classes = useStyles();
 
-  return (
-    <div>
-      <div ref={mapContainer} className={classes.mapContainer} />
-    </div>
-  );
+  return <div ref={mapContainer} className={classes.mapContainer} />;
 }
 
 const useStyles = createUseStyles({
