@@ -1,4 +1,5 @@
 import React from 'react';
+import { createUseStyles } from 'react-jss';
 import { Row, Col, Typography, Button, Avatar, Tag, Divider } from 'antd';
 
 const Farm = ({ data }) => {
@@ -13,6 +14,9 @@ const Farm = ({ data }) => {
     // TODO: Handle Location mapping
   };
 
+  const classes = useStyles();
+  const { avatarStyle, buttons } = classes;
+  
   return (
     <>
       <Row justify="space-between" align="middle">
@@ -20,11 +24,11 @@ const Farm = ({ data }) => {
           <Avatar
             justify="center"
             align="middle"
-            shape="square"
+            shape="square" 
             size={48}
             src={imageURL}
             alt={name}
-            style={{ border: '1px solid grey' }}
+            className={avatarStyle}
           ></Avatar>
         </Col>
         <Col span={14}>
@@ -41,10 +45,10 @@ const Farm = ({ data }) => {
           </Row>
         </Col>
         <Col span={5}>
-          <Button size="small" type="primary" onClick={handleWebsiteClick}>
+          <Button className={buttons} size="small" type="primary" onClick={handleWebsiteClick}>
             Website
           </Button>
-          <Button size="small" type="primary" onClick={handleLocationsClick}>
+          <Button className={buttons} size="small" type="primary" onClick={handleLocationsClick}>
             Directions
           </Button>
         </Col>
@@ -53,5 +57,14 @@ const Farm = ({ data }) => {
     </>
   );
 };
+
+const useStyles = createUseStyles({
+  avatarStyle: {
+    border: '1px solid grey'
+  },
+  buttons: {
+    margin: "2px 0"
+  }
+});
 
 export default Farm;
