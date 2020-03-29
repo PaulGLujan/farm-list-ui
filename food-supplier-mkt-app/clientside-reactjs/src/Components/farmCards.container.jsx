@@ -1,4 +1,5 @@
 import React from 'react';
+import { createUseStyles } from 'react-jss';
 import Farm from './farmCard.component';
 import { Card } from 'antd';
 
@@ -62,13 +63,21 @@ const farms = [
 ];
 
 const FarmCards = () => {
+  const classes = useStyles();
+  const {card} = classes;
   return (
-    <Card title="Default size card" style={{ width: 310 }}>
+    <Card title="Default size card" className={card}>
       {farms.map(farmData => (
-        <Farm data={farmData}></Farm>
+        <Farm data={farmData} />
       ))}
     </Card>
   );
 };
+
+const useStyles = createUseStyles({
+  card: {
+    width: 400
+  }
+});
 
 export default FarmCards;
