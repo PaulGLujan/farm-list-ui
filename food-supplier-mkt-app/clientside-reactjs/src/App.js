@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Layout } from 'antd';
 import { createUseStyles } from 'react-jss';
 import Mapbox from './Mapbox.js';
+import FarmCards from './Components/farmCards.container';
 
 const { Content, Header } = Layout;
 
@@ -24,7 +25,9 @@ const App = props => {
             <p>Card content</p>
             <p>Card content</p>
           </Card>
+          <FarmCards></FarmCards>
         </div>
+
       </Content>
     </Layout>
   );
