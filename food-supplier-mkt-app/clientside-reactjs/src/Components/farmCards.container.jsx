@@ -64,7 +64,7 @@ const farms = [
 
 const FarmCards = () => {
   const classes = useStyles();
-  const {card} = classes;
+  const { card } = classes;
   return (
     <Card title="Default size card" className={card}>
       {farms.map(farmData => (
@@ -76,7 +76,10 @@ const FarmCards = () => {
 
 const useStyles = createUseStyles({
   card: {
-    width: 400
+    width: 400,
+    overflow: 'auto',
+    maxHeight: '85vh',
+    borderRadius: 10
   }
 });
 
