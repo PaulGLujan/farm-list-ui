@@ -9,7 +9,7 @@ const farms = [
     websiteURL: 'https://www.seaforager.com/',
     imageURL:
       'https://helplocalfarms-images.s3-us-west-2.amazonaws.com/sea_forager.jpg',
-    tags: ['CSA', 'Local Pickup']
+    tags: ['CSA', 'Pickup']
   },
   {
     name: 'Water2Table',
@@ -17,7 +17,7 @@ const farms = [
     websiteURL: 'https://www.water2table.com/',
     imageURL:
       'https://helplocalfarms-images.s3-us-west-2.amazonaws.com/water_2_table.png',
-    tags: ['Local Pickup', 'Local Delivery']
+    tags: ['Pickup', 'Local Delivery']
   },
   {
     name: 'TwoXSea',
@@ -25,7 +25,7 @@ const farms = [
     websiteURL: 'http://twoxsea.com/',
     imageURL:
       'https://helplocalfarms-images.s3-us-west-2.amazonaws.com/two_x_sea.jpg',
-    tags: ['Local Pickup']
+    tags: ['Pickup']
   },
   {
     name: 'Dirty Girl Produce',
@@ -41,7 +41,7 @@ const farms = [
     websiteURL: 'http://www.libertyducks.com/',
     imageURL:
       'https://helplocalfarms-images.s3-us-west-2.amazonaws.com/liberty_ducks.jpeg',
-    tags: ['Local Pickup', 'Local Delivery']
+    tags: ['Pickup', 'Local Delivery']
   },
   {
     name: 'Riverdog Farm',
@@ -57,7 +57,7 @@ const farms = [
     websiteURL: 'http://www.dirtygirlproduce.com/',
     imageURL:
       'https://helplocalfarms-images.s3-us-west-2.amazonaws.com/creamco_meats.png',
-    tags: ['Local Pickup', 'Local Delivery']
+    tags: ['Pickup', 'Local Delivery']
   }
 ];
 
