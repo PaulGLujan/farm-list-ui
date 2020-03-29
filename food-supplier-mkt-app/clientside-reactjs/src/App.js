@@ -10,7 +10,7 @@ const App = props => {
   return (
     <Layout>
       <Header className={classes.header}>
-        <h1> Save Our Farms</h1>
+        <h1>Help Local Farms, Fishers, and Ranchers</h1>
       </Header>
       <Content>
         <Mapbox />
