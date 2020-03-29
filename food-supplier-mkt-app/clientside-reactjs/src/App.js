@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Layout } from 'antd';
 import { createUseStyles } from 'react-jss';
 import Mapbox from './Mapbox.js';
+import FoodSelect from './components/FoodSelect';
 
 const { Content, Header } = Layout;
 
@@ -20,6 +21,7 @@ const App = props => {
             style={{ width: 300 }}
             className={classes.mapCard}
           >
+            <FoodSelect/>
             <p>Card content</p>
             <p>Card content</p>
             <p>Card content</p>
