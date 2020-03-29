@@ -1,0 +1,57 @@
+import React from 'react';
+import { Row, Col, Typography, Button, Avatar, Tag, Divider } from 'antd';
+
+const Farm = ({ data }) => {
+  const { name, type, websiteURL, imageURL, tags } = data;
+  const { Text } = Typography;
+
+  const handleWebsiteClick = () => {
+    window.open(websiteURL);
+  };
+
+  const handleLocationsClick = () => {
+    // TODO: Handle Location mapping
+  };
+
+  return (
+    <>
+      <Row justify="space-between" align="middle">
+        <Col span={5}>
+          <Avatar
+            justify="center"
+            align="middle"
+            shape="square"
+            size={48}
+            src={imageURL}
+            alt={name}
+            style={{ border: '1px solid grey' }}
+          ></Avatar>
+        </Col>
+        <Col span={14}>
+          <Row>
+            <Text strong>{name}</Text>
+          </Row>
+          <Row>
+            <Tag color="purple">{type}</Tag>
+          </Row>
+          <Row>
+            {tags.map(tag => (
+              <Tag color="cyan">{tag}</Tag>
+            ))}
+          </Row>
+        </Col>
+        <Col span={5}>
+          <Button size="small" type="primary" onClick={handleWebsiteClick}>
+            Website
+          </Button>
+          <Button size="small" type="primary" onClick={handleLocationsClick}>
+            Directions
+          </Button>
+        </Col>
+      </Row>
+      <Divider style={{ margin: 10 }}></Divider>
+    </>
+  );
+};
+
+export default Farm;
