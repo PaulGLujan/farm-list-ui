@@ -15,17 +15,17 @@ const Farm = ({ data }) => {
   };
 
   const classes = useStyles();
-  const { avatarStyle, buttons } = classes;
-  
+  const { tagStyles, avatarStyle, buttons } = classes;
+
   return (
     <>
       <Row justify="space-between" align="middle">
-        <Col span={5}>
+        <Col span={5} align="center">
           <Avatar
             justify="center"
             align="middle"
-            shape="square" 
-            size={48}
+            shape="square"
+            size={58}
             src={imageURL}
             alt={name}
             className={avatarStyle}
@@ -36,7 +36,9 @@ const Farm = ({ data }) => {
             <Text strong>{name}</Text>
           </Row>
           <Row>
-            <Tag color="purple">{type}</Tag>
+            <Tag className={tagStyles} color="purple">
+              {type}
+            </Tag>
           </Row>
           <Row>
             {tags.map(tag => (
@@ -44,11 +46,21 @@ const Farm = ({ data }) => {
             ))}
           </Row>
         </Col>
-        <Col span={5}>
-          <Button className={buttons} size="small" type="primary" onClick={handleWebsiteClick}>
+        <Col span={5} align="center">
+          <Button
+            className={buttons}
+            size="small"
+            type="primary"
+            onClick={handleWebsiteClick}
+          >
             Website
           </Button>
-          <Button className={buttons} size="small" type="primary" onClick={handleLocationsClick}>
+          <Button
+            className={buttons}
+            size="small"
+            type="primary"
+            onClick={handleLocationsClick}
+          >
             Directions
           </Button>
         </Col>
@@ -63,7 +75,10 @@ const useStyles = createUseStyles({
     border: '1px solid grey'
   },
   buttons: {
-    margin: "2px 0"
+    margin: '2px 0'
+  },
+  tagStyles: {
+    margin: '2px 0'
   }
 });
 
