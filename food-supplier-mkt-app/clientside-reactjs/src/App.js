@@ -1,7 +1,8 @@
 import React from 'react';
-import { Card, Layout } from 'antd';
+import { Layout } from 'antd';
 import { createUseStyles } from 'react-jss';
-import Mapbox from './Mapbox.js';
+import Mapbox from './components/Mapbox';
+import FarmCardsContainer from './components/FarmCardsContainer';
 
 const { Content, Header } = Layout;
 
@@ -15,15 +16,7 @@ const App = props => {
       <Content>
         <Mapbox />
         <div className={classes.cardPadding}>
-          <Card
-            title="Default size card"
-            style={{ width: 300 }}
-            className={classes.mapCard}
-          >
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
-          </Card>
+          <FarmCardsContainer />
         </div>
       </Content>
     </Layout>
