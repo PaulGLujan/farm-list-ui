@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
-import { Card } from 'antd';
+import { Card, Typography, Divider } from 'antd';
 import FarmCard from './farmCard';
 import FoodSelect from './FoodSelect';
 
@@ -66,7 +66,8 @@ const farms = [
 const FarmCards = () => {
     const [filteredFarms, setFilteredFarms] = useState(farms);
     const classes = useStyles();
-    const { card } = classes;
+    const { Text } = Typography;
+    const { card, divider, overflowContainer } = classes;
 
     const onChange = filters => {
         setFilteredFarms(filters.length > 0 ? farms.filter(farm => filters.includes(farm.type)) : farms)
@@ -74,15 +75,18 @@ const FarmCards = () => {
 
     return (
         <Card title="Which foods are you searching for?" className={card}>
-            <div className={classes.cardTitle}>
-                Please note: We are currently only serving the San Francisco Bay
-                Area. We will expand from there.
-            </div>
-            <br />
+            <Text strong>
+                Please note: We are currently only serving the San Francisco Bay Area.
+                We will expand from there.
+            </Text>
+            <Divider className={divider}></Divider>
             <FoodSelect onChange={onChange}/>
-            {filteredFarms.map((farmData, i) => (
-                <FarmCard key={i} data={farmData} />
-            ))}
+            <div class={overflowContainer}>
+                {filteredFarms.map((farmData, i) => (
+                    <FarmCard key={i} data={farmData} />
+                ))}
+            </div>
+
         </Card>
     );
 };
@@ -90,9 +94,16 @@ const FarmCards = () => {
 const useStyles = createUseStyles({
     card: {
         width: 400,
-        overflow: 'auto',
-        maxHeight: '85vh',
         borderRadius: 10
+    },
+    divider: {
+        margin: 15
+    },
+    overflowContainer: {
+        overflowY: 'auto',
+        maxHeight: '55vh',
+        padding: 0,
+        margin: 0,
     }
 });
 
