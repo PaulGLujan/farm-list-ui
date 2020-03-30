@@ -72,7 +72,10 @@ const Farm = ({ data }) => {
 
 const useStyles = createUseStyles({
   avatarStyle: {
-    border: '1px solid grey'
+    border: '1px solid grey',
+    '& img': {
+      objectFit: 'contain'
+    }
   },
   buttons: {
     margin: '2px 0'
