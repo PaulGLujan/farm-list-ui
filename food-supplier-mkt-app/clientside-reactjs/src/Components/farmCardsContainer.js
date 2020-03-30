@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Card } from 'antd';
-import Farm from './farmCard';
+import FarmCard from './farmCard';
 import FoodSelect from './FoodSelect';
 
 const farms = [
@@ -81,7 +81,7 @@ const FarmCards = () => {
             <br />
             <FoodSelect onChange={onChange}/>
             {filteredFarms.map((farmData, i) => (
-                <Farm key={i} data={farmData} />
+                <FarmCard key={i} data={farmData} />
             ))}
         </Card>
     );
