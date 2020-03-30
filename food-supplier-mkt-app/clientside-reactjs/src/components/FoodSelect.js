@@ -12,7 +12,8 @@ const FoodSelect = ({ onChange }) => {
 
     useEffect(() => {
         fetchFarmFoodTypes()
-    }, [fetchFarmFoodTypes])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <Select
