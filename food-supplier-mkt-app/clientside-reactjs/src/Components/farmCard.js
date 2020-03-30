@@ -2,7 +2,7 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { Row, Col, Typography, Button, Avatar, Tag, Divider } from 'antd';
 
-const Farm = ({ data }) => {
+const FarmCard = ({ data }) => {
   const { name, type, websiteURL, imageURL, tags } = data;
   const { Text } = Typography;
 
@@ -88,4 +88,4 @@ const useStyles = createUseStyles({
   }
 });
 
-export default Farm;
+export default FarmCard;
