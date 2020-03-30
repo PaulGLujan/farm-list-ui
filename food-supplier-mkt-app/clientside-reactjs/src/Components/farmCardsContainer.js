@@ -5,7 +5,7 @@ import FarmCard from './FarmCard';
 import FoodSelect from './FoodSelect';
 import FarmContext from '../context/farm-context'
 
-const FarmCards = () => {
+const FarmCards = props => {
     const { farms, fetchAllFarmData } = useContext(FarmContext)
     const [filteredFarms, setFilteredFarms] = useState(farms);
     const classes = useStyles();
