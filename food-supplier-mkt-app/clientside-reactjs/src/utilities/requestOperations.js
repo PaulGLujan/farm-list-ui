@@ -19,7 +19,8 @@ const getAirtableData = async () => {
             }
         });
 
-        return listOfFoodsToSet;
+        const uniqueFoodTypes = [...new Set(listOfFoodsToSet)]
+        return uniqueFoodTypes;
     } catch (err) {
         alert(err);
     }
