@@ -6,18 +6,21 @@ const GlobalState = props => {
   const [farms, setFarms] = useState([])
   const [farmFoodTypes, setFarmFoodTypes] = useState([])
 
-  const fetchAllFarmData = async () => {
+  const fetchAllFarmData = () => {
+    return new Promise(async (resolve, reject) => {
     try {
         // getAllAirtableData() returns an object containing two arrays
         // for complete farm data and unique food types.
         const response = await getAllAirtableData();
         const { farms, uniqueFarmFoodTypes } = response
-
-        setFarms(farms)
-        setFarmFoodTypes(uniqueFarmFoodTypes)
+        await setFarms(farms)
+        await setFarmFoodTypes(uniqueFarmFoodTypes)
+        resolve(farms);
     } catch (err) {
         console.log(err)
+        reject(err);
     }
+  });
   }
 
   // Values are global through useContext
