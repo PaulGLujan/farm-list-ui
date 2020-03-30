@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Card, Typography, Divider } from 'antd';
-import FarmCard from './farmCard';
+import FarmCard from './FarmCard';
 import FoodSelect from './FoodSelect';
 
 const farms = [
