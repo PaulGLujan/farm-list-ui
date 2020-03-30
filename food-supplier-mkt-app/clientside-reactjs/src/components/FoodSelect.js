@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Select } from 'antd';
 import FarmContext from '../context/farm-context';

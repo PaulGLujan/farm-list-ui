@@ -1,22 +1,9 @@
-import React, { useState, useContext, useEffect, useRef } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Card, Typography, Divider } from 'antd';
 import FarmCard from './FarmCard';
 import FoodSelect from './FoodSelect';
 import FarmContext from '../context/farm-context'
-
-const useCompare = (val) => {
-    const prevVal = usePrevious(val)
-    return prevVal !== val
-}
-
-const usePrevious = (value) => {
-    const ref = useRef();
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
-}
 
 const FarmCards = props => {
     const { farms, fetchAllFarmData } = useContext(FarmContext)
@@ -24,7 +11,6 @@ const FarmCards = props => {
     const classes = useStyles();
     const { Text } = Typography;
     const { card, divider, overflowContainer } = classes;
-    const hasFarmsChanged = useCompare(farms)
 
     // Entry point for fetching all Farm Data from Airtable
     useEffect(() => {
