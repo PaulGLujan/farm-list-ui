@@ -7,6 +7,7 @@ const FoodSelect = ({ onChange }) => {
     const [listOfFoods, setListOfFoods] = useState([])
     const isLoading = listOfFoods.length > 0 ? false : true;
     const classes = useStyles();
+    const { selectBox } = classes
     const { Option } = Select;
 
     useEffect(() => {
@@ -27,7 +28,7 @@ const FoodSelect = ({ onChange }) => {
             size={'default'}
             placeholder="Please select food"
             onChange={onChange}
-            className={classes.selectBox}
+            className={selectBox}
             loading={isLoading}
         >
             {listOfFoods.map((food, i) => (
@@ -42,7 +43,7 @@ const FoodSelect = ({ onChange }) => {
 const useStyles = createUseStyles({
     selectBox: {
         width: '100%',
-        marginBottom: 12
+        margin: '0 0 15px 0'
     }
 });
 

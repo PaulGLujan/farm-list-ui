@@ -5,6 +5,8 @@ import { Row, Col, Typography, Button, Avatar, Tag, Divider } from 'antd';
 const FarmCard = ({ data }) => {
   const { name, type, websiteURL, imageURL, tags } = data;
   const { Text } = Typography;
+  const classes = useStyles();
+  const { tagStyles, avatarStyle, buttons, indentedRow, divider, containerRow} = classes;
 
   const handleWebsiteClick = () => {
     window.open(websiteURL);
@@ -14,12 +16,9 @@ const FarmCard = ({ data }) => {
     // TODO: Handle Location mapping
   };
 
-  const classes = useStyles();
-  const { tagStyles, avatarStyle, buttons, indentedRow } = classes;
-
   return (
     <>
-      <Row justify="space-between" align="middle">
+      <Row className={containerRow} justify="space-between" align="middle">
         <Col span={5} align="center">
           <Avatar
             justify="center"
@@ -65,7 +64,7 @@ const FarmCard = ({ data }) => {
           </Button>
         </Col>
       </Row>
-      <Divider style={{ margin: 10 }}></Divider>
+      <Divider className={divider}></Divider>
     </>
   );
 };
@@ -83,8 +82,14 @@ const useStyles = createUseStyles({
   tagStyles: {
     margin: '2px 2px 2px 0'
   },
+  containerRow: {
+    margin: '0 10px 0 0'
+  },
   indentedRow: {
-    paddingLeft: 8
+    paddingLeft: 8,
+  },
+  divider: {
+    margin: 10
   }
 });
 
