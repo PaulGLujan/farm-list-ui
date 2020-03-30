@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Card } from 'antd';
 import Farm from './farmCard';
@@ -64,15 +64,13 @@ const farms = [
 ];
 
 const FarmCards = () => {
+    const [filteredFarms, setFilteredFarms] = useState(farms);
     const classes = useStyles();
     const { card } = classes;
-    const [farmOptions, setFarmOptions] = useState([]);
 
-    const onChange = useCallback(value => setFarmOptions(value), []);
-
-    // Defaults to all farms
-    // Filters farms based on presence of farm.type in selected options in FoodSelect.js
-    const filteredFarms = () => farmOptions.length > 0 ? farms.filter(farm => farmOptions.includes(farm.type)) : farms
+    const onChange = filters => {
+        setFilteredFarms(filters.length > 0 ? farms.filter(farm => filters.includes(farm.type)) : farms)
+    };
 
     return (
         <Card title="Which foods are you searching for?" className={card}>
@@ -82,7 +80,7 @@ const FarmCards = () => {
             </div>
             <br />
             <FoodSelect onChange={onChange}/>
-            {filteredFarms().map((farmData, i) => (
+            {filteredFarms.map((farmData, i) => (
                 <Farm key={i} data={farmData} />
             ))}
         </Card>
