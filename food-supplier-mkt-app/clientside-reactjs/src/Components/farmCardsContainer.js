@@ -2,6 +2,7 @@ import React from 'react';
 import { createUseStyles } from 'react-jss';
 import { Card } from 'antd';
 import Farm from './farmCard';
+import FoodSelect from './FoodSelect';
 
 const farms = [
   {
@@ -67,6 +68,7 @@ const FarmCards = () => {
   const { card } = classes;
   return (
     <Card title="Default size card" className={card}>
+      <FoodSelect />
       {farms.map(farmData => (
         <Farm data={farmData} />
       ))}
