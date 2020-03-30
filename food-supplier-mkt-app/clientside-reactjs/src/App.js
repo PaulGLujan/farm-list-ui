@@ -3,23 +3,26 @@ import { Layout } from 'antd';
 import { createUseStyles } from 'react-jss';
 import Mapbox from './components/Mapbox.js';
 import FarmCardsContainer from './components/FarmCardsContainer';
+import GlobalState from './context/GlobalState';
 
 const { Content, Header } = Layout;
 
 const App = props => {
   const classes = useStyles();
   return (
-    <Layout>
-      <Header className={classes.header}>
-        <h1>Help Local Farms, Fishers, and Ranchers</h1>
-      </Header>
-      <Content>
-        <Mapbox />
-        <div className={classes.cardPadding}>
-          <FarmCardsContainer />
-        </div>
-      </Content>
-    </Layout>
+    <GlobalState>
+      <Layout>
+        <Header className={classes.header}>
+          <h1>Help Local Farms, Fishers, and Ranchers</h1>
+        </Header>
+        <Content>
+          <Mapbox />
+          <div className={classes.cardPadding}>
+            <FarmCardsContainer />
+          </div>
+        </Content>
+      </Layout>
+    </GlobalState>
   );
 };
 
