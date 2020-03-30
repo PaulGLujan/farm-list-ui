@@ -101,6 +101,7 @@ const useStyles = createUseStyles({
     },
     overflowContainer: {
         overflowY: 'auto',
+        overflowX: 'hidden',
         maxHeight: '55vh',
         padding: 0,
         margin: 0,
