@@ -4,16 +4,11 @@ import { Select } from 'antd';
 import FarmContext from '../context/farm-context';
 
 const FoodSelect = ({ onChange }) => {
-    const { farmFoodTypes, fetchFarmFoodTypes } = useContext(FarmContext)
+    const { farmFoodTypes } = useContext(FarmContext)
     const isLoading = farmFoodTypes.length > 0 ? false : true;
     const classes = useStyles();
     const { selectBox } = classes
     const { Option } = Select;
-
-    useEffect(() => {
-        fetchFarmFoodTypes()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
 
     return (
         <Select
