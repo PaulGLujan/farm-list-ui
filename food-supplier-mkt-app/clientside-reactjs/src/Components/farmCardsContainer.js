@@ -86,7 +86,6 @@ const FarmCards = () => {
                     <FarmCard key={i} data={farmData} />
                 ))}
             </div>
-
         </Card>
     );
 };
