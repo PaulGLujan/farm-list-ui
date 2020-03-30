@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { createUseStyles } from 'react-jss';
 import { Select } from 'antd';
 import { getAirtableData } from '../utilities/requestOperations';
 
 const FoodSelect = ({ onChange }) => {
     const [listOfFoods, setListOfFoods] = useState([])
     const isLoading = listOfFoods.length > 0 ? false : true;
+    const classes = useStyles();
     const { Option } = Select;
 
     useEffect(() => {
@@ -25,7 +27,7 @@ const FoodSelect = ({ onChange }) => {
             size={'default'}
             placeholder="Please select food"
             onChange={onChange}
-            style={{ width: '100%', marginBottom: 12 }}
+            className={classes.selectBox}
             loading={isLoading}
         >
             {listOfFoods.map((food, i) => (
@@ -36,5 +38,12 @@ const FoodSelect = ({ onChange }) => {
         </Select>
     )
 }
+
+const useStyles = createUseStyles({
+    selectBox: {
+        width: '100%',
+        marginBottom: 12
+    }
+});
 
 export default FoodSelect;
