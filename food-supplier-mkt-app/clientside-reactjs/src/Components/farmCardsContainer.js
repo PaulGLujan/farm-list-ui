@@ -74,8 +74,8 @@ const FarmCards = () => {
             </div>
             <br />
             <FoodSelect />
-            {farms.map(farmData => (
-                <Farm data={farmData} />
+            {farms.map((farmData, i) => (
+                <Farm key={i} data={farmData} />
             ))}
         </Card>
     );
