@@ -6,16 +6,17 @@ import FoodSelect from './FoodSelect';
 import FarmContext from '../context/farm-context'
 
 const FarmCards = () => {
-    const { farms, fetchFarms } = useContext(FarmContext)
+    const { farms, fetchAllFarmData } = useContext(FarmContext)
     const [filteredFarms, setFilteredFarms] = useState(farms);
     const classes = useStyles();
     const { Text } = Typography;
     const { card, divider, overflowContainer } = classes;
 
-    // useEffect(() => {
-    //     fetchFarms()
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [])
+    // Entry point for fetching all Farm Data from Airtable
+    useEffect(() => {
+        fetchAllFarmData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const onChange = filters => {
         setFilteredFarms(filters.length > 0 ? farms.filter(farm => filters.includes(farm.type)) : farms)
