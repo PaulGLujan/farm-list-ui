@@ -1,7 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import Farm from './farmCard';
 import { Card } from 'antd';
+import Farm from './farmCard';
 
 const farms = [
   {

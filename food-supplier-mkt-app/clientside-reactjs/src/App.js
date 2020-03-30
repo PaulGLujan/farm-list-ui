@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import { createUseStyles } from 'react-jss';
 import Mapbox from './Mapbox.js';
-import FarmCardsContainer from './Components/farmCardsContainer';
+import FarmCardsContainer from './components/farmCardsContainer';
 
 const { Content, Header } = Layout;
 
