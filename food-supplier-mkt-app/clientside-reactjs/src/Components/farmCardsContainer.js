@@ -14,7 +14,8 @@ const FarmCards = () => {
 
     // useEffect(() => {
     //     fetchFarms()
-    // }, [fetchFarms])
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [])
 
     const onChange = filters => {
         setFilteredFarms(filters.length > 0 ? farms.filter(farm => filters.includes(farm.type)) : farms)
