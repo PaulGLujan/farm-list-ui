@@ -5,12 +5,16 @@ import { getAirtableData } from '../utilities/requestOperations';
 const { Option } = Select;
 
 class FoodSelect extends Component {
-    state = {
-        listOfFoods: []
-    };
+    constructor(props) {
+        super(props)
+        this.handleChange = this.handleChange.bind(this)
+        this.state = {
+            listOfFoods: []
+        };
+    }
 
     handleChange(value) {
-        console.log(`Selected: ${value}`);
+        this.props.onChange(value)
     }
 
     async componentDidMount() {
