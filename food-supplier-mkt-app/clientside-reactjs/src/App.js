@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import { createUseStyles } from 'react-jss';
 import Mapbox from './Mapbox.js';
-import FarmCards from './Components/farmCards.container';
+import FarmCardsContainer from './Components/farmCardsContainer';
 
 const { Content, Header } = Layout;
 
@@ -16,7 +16,7 @@ const App = props => {
       <Content>
         <Mapbox />
         <div className={classes.cardPadding}>
-          <FarmCards></FarmCards>
+          <FarmCardsContainer />
         </div>
       </Content>
     </Layout>

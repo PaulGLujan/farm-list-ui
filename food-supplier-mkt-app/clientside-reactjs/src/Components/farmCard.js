@@ -15,7 +15,7 @@ const Farm = ({ data }) => {
   };
 
   const classes = useStyles();
-  const { tagStyles, avatarStyle, buttons } = classes;
+  const { tagStyles, avatarStyle, buttons, indentedRow } = classes;
 
   return (
     <>
@@ -35,14 +35,14 @@ const Farm = ({ data }) => {
           <Row>
             <Text strong>{name}</Text>
           </Row>
-          <Row>
+          <Row className={indentedRow}>
             <Tag className={tagStyles} color="purple">
               {type}
             </Tag>
           </Row>
-          <Row>
+          <Row className={indentedRow}>
             {tags.map(tag => (
-              <Tag color="cyan">{tag}</Tag>
+              <Tag className={tagStyles} color="cyan">{tag}</Tag>
             ))}
           </Row>
         </Col>
@@ -78,7 +78,10 @@ const useStyles = createUseStyles({
     margin: '2px 0'
   },
   tagStyles: {
-    margin: '2px 0'
+    margin: '2px 2px 2px 0'
+  },
+  indentedRow: {
+    paddingLeft: 8
   }
 });
 

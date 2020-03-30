@@ -1,6 +1,6 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import Farm from './farmCard.component';
+import Farm from './farmCard';
 import { Card } from 'antd';
 
 const farms = [
