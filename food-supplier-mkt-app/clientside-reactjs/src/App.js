@@ -5,10 +5,10 @@ import Mapbox from './components/Mapbox.js';
 import FarmCardsContainer from './components/FarmCardsContainer';
 import GlobalState from './context/GlobalState';
 
-const { Content, Header } = Layout;
-
 const App = props => {
   const classes = useStyles();
+  const { Content, Header } = Layout;
+
   return (
     <GlobalState>
       <Layout>
