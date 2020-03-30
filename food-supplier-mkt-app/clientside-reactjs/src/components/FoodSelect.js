@@ -4,7 +4,7 @@ import { getAirtableData } from '../utilities/requestOperations';
 
 const FoodSelect = ({ onChange }) => {
     const [listOfFoods, setListOfFoods] = useState([])
-    const isLoading = listOfFoods.length ? false : true;
+    const isLoading = listOfFoods.length > 0 ? false : true;
     const { Option } = Select;
 
     useEffect(() => {
