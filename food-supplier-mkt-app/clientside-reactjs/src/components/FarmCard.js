@@ -54,14 +54,6 @@ const FarmCard = ({ data }) => {
           >
             Website
           </Button>
-          <Button
-            className={buttons}
-            size="small"
-            type="primary"
-            onClick={handleLocationsClick}
-          >
-            Directions
-          </Button>
         </Col>
       </Row>
       <Divider className={divider}></Divider>
