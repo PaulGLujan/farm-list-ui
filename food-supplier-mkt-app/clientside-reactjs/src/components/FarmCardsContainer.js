@@ -14,9 +14,13 @@ const FarmCards = props => {
 
     // Entry point for fetching all Farm Data from Airtable
     useEffect(() => {
-        fetchAllFarmData()
+        async function fetchData() {
+            const initialFarms = await fetchAllFarmData()
+            setFilteredFarms(initialFarms);
+        } fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
 
     const onChange = filters => {
         setFilteredFarms(filters.length > 0 ? farms.filter(farm => filters.includes(farm.type)) : farms)
