@@ -1,73 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Card, Typography, Divider } from 'antd';
 import FarmCard from './FarmCard';
 import FoodSelect from './FoodSelect';
+import FarmContext from '../context/farm-context'
 
-const farms = [
-    {
-        name: 'Seaforager',
-        type: 'Fish',
-        websiteURL: 'https://www.seaforager.com/',
-        imageURL:
-            'https://helplocalfarms-images.s3-us-west-2.amazonaws.com/sea_forager.jpg',
-        tags: ['CSA', 'Pickup']
-    },
-    {
-        name: 'Water2Table',
-        type: 'Fish',
-        websiteURL: 'https://www.water2table.com/',
-        imageURL:
-            'https://helplocalfarms-images.s3-us-west-2.amazonaws.com/water_2_table.png',
-        tags: ['Pickup', 'Local Delivery']
-    },
-    {
-        name: 'TwoXSea',
-        type: 'Fish',
-        websiteURL: 'http://twoxsea.com/',
-        imageURL:
-            'https://helplocalfarms-images.s3-us-west-2.amazonaws.com/two_x_sea.jpg',
-        tags: ['Pickup']
-    },
-    {
-        name: 'Dirty Girl Produce',
-        type: 'Farm',
-        websiteURL: 'http://www.dirtygirlproduce.com/',
-        imageURL:
-            'https://helplocalfarms-images.s3-us-west-2.amazonaws.com/dirty_girl_produce.gif',
-        tags: ['Organic', 'CSA']
-    },
-    {
-        name: 'Liberty Ducks',
-        type: 'Poultry',
-        websiteURL: 'http://www.libertyducks.com/',
-        imageURL:
-            'https://helplocalfarms-images.s3-us-west-2.amazonaws.com/liberty_ducks.jpeg',
-        tags: ['Pickup', 'Local Delivery']
-    },
-    {
-        name: 'Riverdog Farm',
-        type: 'Farm',
-        websiteURL: 'http://www.riverdogfarm.com/',
-        imageURL:
-            'https://helplocalfarms-images.s3-us-west-2.amazonaws.com/riverdog_farm.jpg',
-        tags: ['Organic', 'CSA']
-    },
-    {
-        name: 'CreamCo Meats',
-        type: 'Meat',
-        websiteURL: 'http://www.dirtygirlproduce.com/',
-        imageURL:
-            'https://helplocalfarms-images.s3-us-west-2.amazonaws.com/creamco_meats.png',
-        tags: ['Pickup', 'Local Delivery']
-    }
-];
-
-const FarmCards = () => {
+const FarmCards = props => {
+    const { farms, fetchAllFarmData } = useContext(FarmContext)
     const [filteredFarms, setFilteredFarms] = useState(farms);
     const classes = useStyles();
     const { Text } = Typography;
     const { card, divider, overflowContainer } = classes;
+
+    // Entry point for fetching all Farm Data from Airtable
+    useEffect(() => {
+        async function fetchData() {
+            const initialFarms = await fetchAllFarmData()
+            setFilteredFarms(initialFarms);
+        } fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
 
     const onChange = filters => {
         setFilteredFarms(filters.length > 0 ? farms.filter(farm => filters.includes(farm.type)) : farms)
