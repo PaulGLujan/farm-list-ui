@@ -7,9 +7,9 @@ import { createUseStyles } from 'react-jss';
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_TOKEN
 
 function airtableFetchMarkers(map) {
-	const base = new Airtable({apiKey: 'key9CJdcEkG2Ymiur'}).base('appDk0v3oHfD3Bjf6');
+	const base = new Airtable({apiKey: 'key9CJdcEkG2Ymiur'}).base('appqSf5jx9GWKg9DC');
 
-  base('Locations').select({
+  base('Imported table 2').select({
     view: "Grid view"
   }).eachPage(function page(records, fetchNextPage) {
     // This function (`page`) will get called for each page of records.
