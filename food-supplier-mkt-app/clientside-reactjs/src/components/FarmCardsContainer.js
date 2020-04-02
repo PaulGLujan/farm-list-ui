@@ -21,9 +21,9 @@ const FarmCards = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
     const onChange = filters => {
-        setFilteredFarms(filters.length > 0 ? farms.filter(farm => filters.includes(farm.type)) : farms)
+        // Render farm if farm.Type array container one or more elements in the filters Array
+        setFilteredFarms(filters.length > 0 ? farms.filter(farm => filters.some(f => farm.Type.indexOf(f) >= 0)) : farms)
     };
 
     return (
