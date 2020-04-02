@@ -31,13 +31,13 @@ const FarmCard = ({ data }) => {
             <Text strong>{Name}</Text>
           </Row>
           <Row className={indentedRow}>
-              {Type.map(type => (
-                <Tag className={tagStyles} color="purple">{type}</Tag>
+              {Type.map((type, i) => (
+                <Tag key={i} className={tagStyles} color="purple">{type}</Tag>
               ))}
           </Row>
           <Row className={indentedRow}>
-            {Tags.map(tag => (
-              <Tag className={tagStyles} color="cyan">{tag}</Tag>
+            {Tags.map((tag, i) => (
+              <Tag key={i} className={tagStyles} color="cyan">{tag}</Tag>
             ))}
           </Row>
         </Col>
