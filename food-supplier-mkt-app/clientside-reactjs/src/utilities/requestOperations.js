@@ -16,24 +16,27 @@ export const getAllAirtableData = async () => {
         const uniqueFarmFoodTypes = []
 
         response.forEach(record => {
-            const { Business, Type, Website, Image } = record.fields
+            const { Name, About, Contact, Type, WebsiteURL, ImageURL, Latitude, Longitude } = record.fields
 
             // Returns tag names if value is true.
             // Additional tag cells on Airtable must also be checkboxes for this to work.
-            const tags = Object.keys(record.fields).filter(k => record.fields[k] === true)
+            const Tags = Object.keys(record.fields).filter(k => record.fields[k] === true)
 
-            const farmObj = {
-                name: Business,
-                type: Type[0],
-                websiteURL: Website,
-                imageURL: Image,
-                tags
-            }
-            farms.push(farmObj)
+            farms.push({
+                Name,
+                About,
+                Contact,
+                Type,
+                WebsiteURL,
+                ImageURL,
+                Tags,
+                Latitude,
+                Longitude
+            })
 
-            // Filters tags for unique values only.
+            // Filters types for unique values only.
             // Values used in components/FoodSelect.js
-            if (!uniqueFarmFoodTypes.includes(farmObj.type)) { uniqueFarmFoodTypes.push(farmObj.type) }
+            if (!uniqueFarmFoodTypes.includes(Type)) { uniqueFarmFoodTypes.push(Type) }
         })
         return {
             farms, 
