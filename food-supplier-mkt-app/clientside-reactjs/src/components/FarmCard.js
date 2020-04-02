@@ -12,10 +12,6 @@ const FarmCard = ({ data }) => {
     window.open(WebsiteURL);
   };
 
-  const handleLocationsClick = () => {
-    // TODO: Handle Location mapping
-  };
-
   return (
     <>
       <Row className={containerRow} justify="space-between" align="middle">
