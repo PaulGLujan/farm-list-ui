@@ -1,86 +1,72 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import mapboxgl from 'mapbox-gl';
-import Airtable from 'airtable';
 import { createUseStyles } from 'react-jss';
+import FarmContext from '../context/farm-context';
 // import process from './../../env.json' // <-- Please leave this in, so it can be accesed in v0.0.2-(react-webpack).  Can just leave it commented out and I'll comment it in,
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_TOKEN
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_API_TOKEN;
 
-function airtableFetchMarkers(map) {
-	const base = new Airtable({apiKey: 'key9CJdcEkG2Ymiur'}).base('appqSf5jx9GWKg9DC');
+const Mapbox = props => {
+    const farmContext = useContext(FarmContext);
 
-  base('Imported table 2').select({
-    view: "Grid view"
-  }).eachPage(function page(records, fetchNextPage) {
-    // This function (`page`) will get called for each page of records.
-    records.forEach(function(record) {
-      if (record.fields.Longitude && record.fields.Latitude) {
-        const coordinates = [record.fields.Longitude, record.fields.Latitude];
-
-        // make a marker and add to the map
-        new mapboxgl.Marker()
-        .setLngLat(coordinates)
-        .addTo(map);
-
-        console.log('Retrieved', record.get('Name'));
-      }
+    const [view, setView] = useState({
+        // Default Bay Area coordinates
+        lng: -122.420679,
+        lat: 37.772537,
+        zoom: 7
     });
+    const [map, setMap] = useState();
+    const mapContainer = useRef(null);
 
-    // To fetch the next page of records, call `fetchNextPage`.
-    // If there are more records, `page` will get called again.
-    // If there are no more records, `done` will get called.
-    fetchNextPage();
-  }, function done(err) {
-    if (err) { console.error(err); return; }
-  });
-}
+    // Initialize MapBox Map
+    useEffect(() => {
+        const initMap = new mapboxgl.Map({
+            container: mapContainer.current,
+            style: 'mapbox://styles/mapbox/streets-v9',
+            center: [view.lng, view.lat],
+            zoom: view.zoom
+        });
 
-const Mapbox = (props) => {
-  let map = null;
-  const [view, setView] = useState({
-    // Default Bay Area coordinates
-    lng: -122.420679,
-    lat: 37.772537,
-    zoom: 7,
-  })
-  const mapContainer = useRef(null); 
+        initMap.on('move', () => {
+            setView({
+                lng: map.getCenter().lng.toFixed(4),
+                lat: map.getCenter().lat.toFixed(4),
+                zoom: map.getZoom().toFixed(2)
+            });
+        });
+        setMap(initMap);
+    }, []);
 
-  // Initialize MapBox Map
-  useEffect(() => {
-    map = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v9',
-      center: [view.lng, view.lat],
-      zoom: view.zoom,
-    });
+    // Set Farm Coordinates
+    useEffect(() => {
+        const { farms } = farmContext;
 
-    map.on('move', () => {
-      setView({
-        lng: map.getCenter().lng.toFixed(4),
-        lat: map.getCenter().lat.toFixed(4),
-        zoom: map.getZoom().toFixed(2)
-      });
-    });
-  }, [])
+        farms.forEach(farm => {
+            if (farm.Coordinates.longitude && farm.Coordinates.latitude) {
+                const coordinates = [
+                    farm.Coordinates.longitude,
+                    farm.Coordinates.latitude
+                ];
 
-	// FetchAirtable
-  useEffect(() => {
-		airtableFetchMarkers(map);
-	}, [])
+                // make a marker and add to the map
+                new mapboxgl.Marker().setLngLat(coordinates).addTo(map);
+            }
+        });
+    }, [farmContext]);
 
-  const classes = useStyles();
+    const classes = useStyles();
 
-  return <div ref={mapContainer} className={classes.mapContainer} />;
-}
+    return <div ref={mapContainer} className={classes.mapContainer} />;
+};
 
 const useStyles = createUseStyles({
-  mapContainer: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    overflow: 'hidden',
-    visibility: 'inherit'
-  }
+    mapContainer: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        overflow: 'hidden',
+        visibility: 'inherit'
+    }
 });
 
 export default Mapbox;

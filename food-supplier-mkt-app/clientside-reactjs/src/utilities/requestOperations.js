@@ -31,8 +31,10 @@ export const getAllAirtableData = async () => {
                 WebsiteURL,
                 ImageURL,
                 Tags,
-                Latitude,
-                Longitude
+                Coordinates: {
+                    latitude: Latitude,
+                    longitude: Longitude
+                },
             })
         })
 
