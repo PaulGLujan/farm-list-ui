@@ -41,7 +41,7 @@ const Mapbox = (props) => {
     // Default Bay Area coordinates
     lng: -122.420679,
     lat: 37.772537,
-    zoom: 9,
+    zoom: 7,
   })
   const mapContainer = useRef(null); 
 
