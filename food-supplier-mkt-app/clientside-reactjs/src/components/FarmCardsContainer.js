@@ -22,7 +22,7 @@ const FarmCards = props => {
     }, [])
 
     const onChange = filters => {
-        // Render farm if farm.Type array container one or more elements in the filters Array
+        // Render farm if farm.Type array contains one or more elements in the filters Array
         setFilteredFarms(filters.length > 0 ? farms.filter(farm => filters.some(f => farm.Type.indexOf(f) >= 0)) : farms)
     };
 
