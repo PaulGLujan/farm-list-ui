@@ -3,17 +3,13 @@ import { createUseStyles } from 'react-jss';
 import { Row, Col, Typography, Button, Avatar, Tag, Divider } from 'antd';
 
 const FarmCard = ({ data }) => {
-  const { name, type, websiteURL, imageURL, tags } = data;
+  const { Name, Type, WebsiteURL, ImageURL, Tags } = data;
   const { Text } = Typography;
   const classes = useStyles();
   const { tagStyles, avatarStyle, buttons, indentedRow, divider, containerRow} = classes;
 
   const handleWebsiteClick = () => {
-    window.open(websiteURL);
-  };
-
-  const handleLocationsClick = () => {
-    // TODO: Handle Location mapping
+    window.open(WebsiteURL);
   };
 
   return (
@@ -25,23 +21,23 @@ const FarmCard = ({ data }) => {
             align="middle"
             shape="square"
             size={58}
-            src={imageURL}
-            alt={name}
+            src={ImageURL}
+            alt={Name}
             className={avatarStyle}
           ></Avatar>
         </Col>
         <Col span={14}>
           <Row>
-            <Text strong>{name}</Text>
+            <Text strong>{Name}</Text>
           </Row>
           <Row className={indentedRow}>
-            <Tag className={tagStyles} color="purple">
-              {type}
-            </Tag>
+              {Type.map((type, i) => (
+                <Tag key={i} className={tagStyles} color="purple">{type}</Tag>
+              ))}
           </Row>
           <Row className={indentedRow}>
-            {tags.map(tag => (
-              <Tag className={tagStyles} color="cyan">{tag}</Tag>
+            {Tags.map((tag, i) => (
+              <Tag key={i} className={tagStyles} color="cyan">{tag}</Tag>
             ))}
           </Row>
         </Col>

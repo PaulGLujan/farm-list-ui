@@ -21,9 +21,9 @@ const FarmCards = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
     const onChange = filters => {
-        setFilteredFarms(filters.length > 0 ? farms.filter(farm => filters.includes(farm.type)) : farms)
+        // Render farm if farm.Type array contains one or more elements in the filters array
+        setFilteredFarms(filters.length > 0 ? farms.filter(farm => filters.some(f => farm.Type.indexOf(f) >= 0)) : farms)
     };
 
     return (
@@ -34,7 +34,7 @@ const FarmCards = props => {
             </Text>
             <Divider className={divider}></Divider>
             <FoodSelect onChange={onChange}/>
-            <div class={overflowContainer}>
+            <div className={overflowContainer}>
                 {filteredFarms.map((farmData, i) => (
                     <FarmCard key={i} data={farmData} />
                 ))}
