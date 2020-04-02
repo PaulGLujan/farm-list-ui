@@ -34,7 +34,7 @@ const FarmCards = props => {
             </Text>
             <Divider className={divider}></Divider>
             <FoodSelect onChange={onChange}/>
-            <div class={overflowContainer}>
+            <div className={overflowContainer}>
                 {filteredFarms.map((farmData, i) => (
                     <FarmCard key={i} data={farmData} />
                 ))}
