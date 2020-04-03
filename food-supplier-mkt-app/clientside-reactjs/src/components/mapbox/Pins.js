@@ -8,7 +8,7 @@ const ICON_SIZE = 20;
 // Important for perf: the markers never change, avoid rerender when the map viewport changes
 class Pins extends PureComponent {
     render() {
-        const { classes } = this.props;
+        const { classes, onHover } = this.props;
 
         return (
             <Marker
@@ -21,9 +21,11 @@ class Pins extends PureComponent {
                     src={mapMarkerImg}
                     onMouseEnter={() => {
                         console.log('onMouseEnter');
+                        onHover(true)
                     }}
                     onMouseOut={() => {
                         console.log('onMouseOut');
+                        onHover(false)
                     }}
                 />
             </Marker>
