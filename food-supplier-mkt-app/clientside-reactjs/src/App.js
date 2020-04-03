@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from 'antd';
 import { createUseStyles } from 'react-jss';
-import Mapbox from './components/Mapbox.js';
+import Mapbox from './components/mapbox/Mapbox.js';
 import FarmCardsContainer from './components/FarmCardsContainer';
 import GlobalState from './context/GlobalState';
 
