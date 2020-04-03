@@ -17,7 +17,7 @@ class Map extends Component {
     };
 
     _renderPopup() {
-        if (true) {
+        if (false) {
             return (
                 <Popup
                     longitude={-122.420679}
