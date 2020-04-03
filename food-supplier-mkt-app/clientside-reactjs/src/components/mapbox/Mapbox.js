@@ -8,15 +8,15 @@ const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_API_TOKEN;
 class Map extends Component {
     state = {
         viewport: {
-            width: 400,
-            height: 400,
+            width: '100%',
+            height: '100%',
             latitude: 37.7577,
             longitude: -122.4376,
             zoom: 8
         }
     };
 
-    _renderPopup() {
+    renderPopup() {
         if (false) {
             return (
                 <Popup
@@ -33,15 +33,25 @@ class Map extends Component {
 
     render() {
         return (
-            <ReactMapGL
-                {...this.state.viewport}
-                onViewportChange={viewport => this.setState({ viewport })}
-                mapboxApiAccessToken={MAPBOX_TOKEN}
-                mapStyle="mapbox://styles/mapbox/streets-v11"
+            <div
+                style={{
+                    position  : 'absolute',
+                    width     : '100%',
+                    height    : '100%',
+                    overflow  : 'hidden',
+                    visibility: 'inherit'
+                }}
             >
-                <Pins />
-                {this._renderPopup()}
-            </ReactMapGL>
+                <ReactMapGL
+                    {...this.state.viewport}
+                    onViewportChange={viewport => this.setState({ viewport })}
+                    mapboxApiAccessToken={MAPBOX_TOKEN}
+                    mapStyle="mapbox://styles/mapbox/streets-v11"
+                >
+                    <Pins />
+                    {this.renderPopup()}
+                </ReactMapGL>
+            </div>
         );
     }
 }
