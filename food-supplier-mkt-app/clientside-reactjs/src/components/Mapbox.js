@@ -29,9 +29,9 @@ const Mapbox = props => {
 
         initMap.on('move', () => {
             setView({
-                lng: map.getCenter().lng.toFixed(4),
-                lat: map.getCenter().lat.toFixed(4),
-                zoom: map.getZoom().toFixed(2)
+                lng: initMap.getCenter().lng.toFixed(4),
+                lat: initMap.getCenter().lat.toFixed(4),
+                zoom: initMap.getZoom().toFixed(2)
             });
         });
         setMap(initMap);
