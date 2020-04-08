@@ -17,13 +17,9 @@ const Map = () => {
 
     const [hoverInfo, setHoverInfo] = useState(null);
 
-    const onMarkerHover = togglePopup => {
-        if (togglePopup) {
-            const hoverInfo = {
-                longitude: -122.420679,
-                latitude: 37.772537
-            };
-            setHoverInfo(hoverInfo);
+    const onMarkerHover = coordinates => {
+        if (coordinates) {
+            setHoverInfo(coordinates);
         } else {
             setHoverInfo(null);
         }
@@ -48,24 +44,24 @@ const Map = () => {
                 {farms.map(({ Coordinates }, i) => (
                     <Pins
                         key={`pins-${i}`}
-                        onHover={togglePopup => {
-                            onMarkerHover(togglePopup);
+                        onHover={coordinates => {
+                            onMarkerHover(coordinates);
                         }}
                         coordinates={Coordinates}
                     />
                 ))}
-                {renderPopup({ hoverInfo })}
+                {renderPopup(hoverInfo)}
             </ReactMapGL>
         </div>
     );
 };
 
-const renderPopup = ({ hoverInfo }) => {
-    if (hoverInfo) {
+const renderPopup = coordinates => {
+    if (coordinates) {
         return (
             <Popup
-                longitude={hoverInfo.longitude}
-                latitude={hoverInfo.latitude}
+                longitude={coordinates.longitude}
+                latitude={coordinates.latitude}
                 closeButton={false}
             >
                 <div className="county-info">This is a popup</div>
