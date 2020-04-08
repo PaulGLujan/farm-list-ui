@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Pins from './Pins';
 import ReactMapGL, { Popup } from 'react-map-gl';
+import FarmContext from '../../context/farm-context';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_API_TOKEN;
 
 const Map = () => {
+    const { farms } = useContext(FarmContext);
     const [viewport, setViewport] = useState({
         width: '100%',
         height: '100%',
@@ -43,11 +45,15 @@ const Map = () => {
                 mapboxApiAccessToken={MAPBOX_TOKEN}
                 mapStyle="mapbox://styles/mapbox/streets-v11"
             >
-                <Pins
-                    onHover={togglePopup => {
-                        onMarkerHover(togglePopup);
-                    }}
-                />
+                {farms.map(({ Coordinates }, i) => (
+                    <Pins
+                        key={`pins-${i}`}
+                        onHover={togglePopup => {
+                            onMarkerHover(togglePopup);
+                        }}
+                        coordinates={Coordinates}
+                    />
+                ))}
                 {renderPopup({ hoverInfo })}
             </ReactMapGL>
         </div>
