@@ -17,14 +17,6 @@ const Map = () => {
 
     const [hoverInfo, setHoverInfo] = useState(null);
 
-    const onMarkerHover = coordinates => {
-        if (coordinates) {
-            setHoverInfo(coordinates);
-        } else {
-            setHoverInfo(null);
-        }
-    };
-
     return (
         <div
             style={{
@@ -41,13 +33,17 @@ const Map = () => {
                 mapboxApiAccessToken={MAPBOX_TOKEN}
                 mapStyle="mapbox://styles/mapbox/streets-v11"
             >
-                {farms.map(({ Coordinates }, i) => (
+                {farms.map(({ Coordinates: coordinates, Name: name }, i) => (
                     <Pins
                         key={`pins-${i}`}
-                        onHover={coordinates => {
-                            onMarkerHover(coordinates);
+                        onHover={isHovered => {
+                            if (isHovered) {
+                                setHoverInfo({ coordinates, name });
+                            } else {
+                                setHoverInfo(null);
+                            }
                         }}
-                        coordinates={Coordinates}
+                        coordinates={coordinates}
                     />
                 ))}
                 {renderPopup(hoverInfo)}
@@ -56,15 +52,16 @@ const Map = () => {
     );
 };
 
-const renderPopup = coordinates => {
-    if (coordinates) {
+const renderPopup = selectedMarker => {
+    if (selectedMarker) {
+        const { coordinates, name } = selectedMarker;
         return (
             <Popup
                 longitude={coordinates.longitude}
                 latitude={coordinates.latitude}
                 closeButton={false}
             >
-                <div className="county-info">This is a popup</div>
+                <div className="county-info">{name}</div>
             </Popup>
         );
     }

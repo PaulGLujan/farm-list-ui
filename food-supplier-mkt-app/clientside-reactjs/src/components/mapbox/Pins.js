@@ -21,7 +21,7 @@ class Pins extends PureComponent {
                     src={mapMarkerImg}
                     onMouseEnter={() => {
                         console.log('onMouseEnter');
-                        onHover(coordinates);
+                        onHover(true);
                     }}
                     onMouseOut={() => {
                         console.log('onMouseOut');
