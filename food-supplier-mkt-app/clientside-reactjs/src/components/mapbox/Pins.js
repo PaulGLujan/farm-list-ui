@@ -9,7 +9,6 @@ const ICON_SIZE = 20;
 class Pins extends PureComponent {
     render() {
         const { classes, onHover, coordinates } = this.props;
-        console.log(coordinates);
 
         return (
             <Marker
@@ -22,7 +21,7 @@ class Pins extends PureComponent {
                     src={mapMarkerImg}
                     onMouseEnter={() => {
                         console.log('onMouseEnter');
-                        onHover(true);
+                        onHover(coordinates);
                     }}
                     onMouseOut={() => {
                         console.log('onMouseOut');
