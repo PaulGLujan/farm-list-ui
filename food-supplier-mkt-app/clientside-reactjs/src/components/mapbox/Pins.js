@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import { Marker } from 'react-map-gl';
 import withStyles from 'react-jss';
-import mapMarkerImg from '../../resources/images/map-marker.png';
+import defaultMapMarker from '../../resources/images/default-marker.png';
 
-const ICON_SIZE = 20;
+const ICON_SIZE = 27;
 
 // Important for perf: the markers never change, avoid rerender when the map viewport changes
 class Pins extends PureComponent {
@@ -18,7 +18,7 @@ class Pins extends PureComponent {
             >
                 <img
                     style={{ width: ICON_SIZE }}
-                    src={mapMarkerImg}
+                    src={defaultMapMarker}
                     onMouseEnter={() => {
                         console.log('onMouseEnter');
                         onHover(true);
