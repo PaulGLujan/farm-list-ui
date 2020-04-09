@@ -2,9 +2,9 @@ const AirtablePlus = require('airtable-plus');
 
 // BaseID, apiKey, and tableName can alternatively be set by environment variables
 const airtable = new AirtablePlus({
-  baseID: 'app8yNh5HiXXbpXRe',
-  apiKey: 'key54bic9Lngk71On',
-  tableName: 'suppliers',
+    baseID: 'app8yNh5HiXXbpXRe',
+    apiKey: 'key54bic9Lngk71On',
+    tableName: 'suppliers'
 });
 
 export const getAllAirtableData = async () => {
