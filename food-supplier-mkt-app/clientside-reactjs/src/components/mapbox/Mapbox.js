@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import Pins from './Pins';
 import ReactMapGL, { Popup } from 'react-map-gl';
 import FarmContext from '../../context/farm-context';
+import MarkerPopup from './MarkerPopup';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_API_TOKEN;
 
@@ -56,13 +57,12 @@ const renderPopup = selectedMarker => {
     if (selectedMarker) {
         const { coordinates, name } = selectedMarker;
         return (
-            <Popup
+            <MarkerPopup
                 longitude={coordinates.longitude}
                 latitude={coordinates.latitude}
-                closeButton={false}
             >
                 <div className="county-info">{name}</div>
-            </Popup>
+            </MarkerPopup>
         );
     }
     return null;
