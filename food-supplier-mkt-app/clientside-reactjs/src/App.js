@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss';
 import Mapbox from './components/mapbox/Mapbox.js';
 import FarmCardsContainer from './components/FarmCardsContainer';
 import GlobalState from './context/GlobalState';
+import { ViewportContextController } from './context/ViewportContext';
 
 const App = props => {
     const classes = useStyles();
@@ -16,10 +17,12 @@ const App = props => {
                     <h1>Help Local Farms, Fishers, and Ranchers</h1>
                 </Header>
                 <Content>
-                    <Mapbox />
-                    <div className={classes.cardPadding}>
-                        <FarmCardsContainer />
-                    </div>
+                    <ViewportContextController>
+                        <Mapbox />
+                        <div className={classes.cardPadding}>
+                            <FarmCardsContainer />
+                        </div>
+                    </ViewportContextController>
                 </Content>
             </Layout>
         </GlobalState>
