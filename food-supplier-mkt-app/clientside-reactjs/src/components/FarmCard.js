@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Row, Col, Typography, Button, Avatar, Tag, Divider } from 'antd';
+import { ViewportContext } from '../context/ViewportContext';
 
 const FarmCard = ({ data }) => {
-    const { Name, Type, WebsiteURL, ImageURL, Tags } = data;
+    const { Name, Type, WebsiteURL, ImageURL, Tags, Coordinates } = data;
+    const { manualSetViewport } = useContext(ViewportContext);
     const { Text } = Typography;
     const classes = useStyles();
     const {
@@ -25,6 +27,13 @@ const FarmCard = ({ data }) => {
                 className={containerRow}
                 justify="space-between"
                 align="middle"
+                onClick={() => {
+                    manualSetViewport(
+                        Coordinates.latitude,
+                        Coordinates.longitude,
+                        10
+                    );
+                }}
             >
                 <Col span={5} align="center">
                     <Avatar
@@ -86,7 +95,8 @@ const useStyles = createUseStyles({
         margin: '2px 2px 2px 0'
     },
     containerRow: {
-        margin: '0 10px 0 0'
+        margin: '0 10px 0 0',
+        cursor: 'pointer'
     },
     indentedRow: {
         paddingLeft: 8

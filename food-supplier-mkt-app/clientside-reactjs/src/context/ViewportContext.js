@@ -14,7 +14,8 @@ const { Provider } = ViewportContext;
 const ViewportContextController = ({ children }) => {
     const [viewport, setViewport] = useState(initialViewport);
 
-    const manualSetViewport = (latitude, longitude) => {
+    const manualSetViewport = (latitude, longitude, zoom) => {
+        if (zoom) viewport.zoom = zoom;
         const newViewport = {
             ...viewport,
             latitude,
@@ -24,6 +25,8 @@ const ViewportContextController = ({ children }) => {
     };
 
     return (
+        // All of the keys in the value object can be used via `useContext`
+        // The value prop is the mutable "store" of the context
         <Provider value={{ viewport, setViewport, manualSetViewport }}>
             {children}
         </Provider>
