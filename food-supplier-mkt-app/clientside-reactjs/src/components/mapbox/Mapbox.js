@@ -2,19 +2,14 @@ import React, { useContext, useState } from 'react';
 import Pins from './Pins';
 import ReactMapGL, { Popup } from 'react-map-gl';
 import FarmContext from '../../context/farm-context';
+import { ViewportContext } from '../../context/ViewportContext';
 import MarkerPopup from './MarkerPopup';
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_API_TOKEN;
 
 const Map = () => {
+    const { viewport, setViewport } = useContext(ViewportContext);
     const { farms } = useContext(FarmContext);
-    const [viewport, setViewport] = useState({
-        width: '100%',
-        height: '100%',
-        latitude: 37.7577,
-        longitude: -122.4376,
-        zoom: 8
-    });
 
     const [hoverInfo, setHoverInfo] = useState(null);
 
