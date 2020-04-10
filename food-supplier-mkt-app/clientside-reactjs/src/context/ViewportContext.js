@@ -14,7 +14,20 @@ const { Provider } = ViewportContext;
 const ViewportContextController = ({ children }) => {
     const [viewport, setViewport] = useState(initialViewport);
 
-    return <Provider value={{ viewport, setViewport }}>{children}</Provider>;
+    const manualSetViewport = (latitude, longitude) => {
+        const newViewport = {
+            ...viewport,
+            latitude,
+            longitude
+        };
+        setViewport(newViewport);
+    };
+
+    return (
+        <Provider value={{ viewport, setViewport, manualSetViewport }}>
+            {children}
+        </Provider>
+    );
 };
 
 export { ViewportContext, ViewportContextController };
