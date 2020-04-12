@@ -14,7 +14,8 @@ const FarmCard = ({ data }) => {
         buttons,
         indentedRow,
         divider,
-        containerRow
+        containerRow,
+        hideSM
     } = classes;
 
     const handleWebsiteClick = () => {
@@ -64,8 +65,18 @@ const FarmCard = ({ data }) => {
                             </Tag>
                         ))}
                     </Row>
+                    <Row className={[indentedRow, hideSM].join(' ')}>
+                        <Button
+                            className={buttons}
+                            size="small"
+                            type="primary"
+                            onClick={handleWebsiteClick}
+                        >
+                            Website
+                        </Button>
+                    </Row>
                 </Col>
-                <Col span={5} align="center">
+                <Col xs={0} sm={5} align="center">
                     <Button
                         className={buttons}
                         size="small"
@@ -103,6 +114,12 @@ const useStyles = createUseStyles({
     },
     divider: {
         margin: 10
+    },
+    hideSM: {},
+    '@media (min-width: 576px)': {
+        hideSM: {
+            display: 'none'
+        }
     }
 });
 
