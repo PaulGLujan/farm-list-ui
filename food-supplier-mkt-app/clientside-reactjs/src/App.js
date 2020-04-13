@@ -3,6 +3,7 @@ import { Layout } from 'antd';
 import { createUseStyles } from 'react-jss';
 import Mapbox from './components/mapbox/Mapbox.js';
 import FarmCardsContainer from './components/FarmCardsContainer';
+import MobileFooter from './components/MobileFooter';
 import GlobalState from './context/GlobalState';
 import { ViewportContextController } from './context/ViewportContext';
 
@@ -25,6 +26,7 @@ const App = props => {
                         </div>
                     </ViewportContextController>
                 </Content>
+                <MobileFooter setDrawerVisible={setDrawerVisible}/>
             </Layout>
         </GlobalState>
     );
