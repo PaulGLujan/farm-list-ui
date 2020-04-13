@@ -40,14 +40,11 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
                 mask={false}
                 closable={false}
                 className={classes.drawer}
+                closable={true}
+                onClose={() => {
+                    setDrawerVisible(false);
+                }}
             >
-                <Button
-                    onClick={() => {
-                        setDrawerVisible(false);
-                    }}
-                >
-                    Hide
-                </Button>
                 <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
                     <FoodSelect onChange={onChange} />
                     <div className={overflowContainer}>
@@ -86,6 +83,9 @@ const useStyles = createUseStyles({
     drawer: {
         '& .ant-drawer-content-wrapper': {
             height: '320px !important'
+        },
+        '& .ant-drawer-close': {
+            top: 11
         }
     },
     card: {
