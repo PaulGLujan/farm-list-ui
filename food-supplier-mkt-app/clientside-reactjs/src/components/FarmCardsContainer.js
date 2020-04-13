@@ -32,42 +32,54 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
                 : farms
         );
     };
-
-    return (
-        <Drawer
-            placement="bottom"
-            visible={drawerVisible}
-            mask={false}
-            closable={false}
-            className={classes.drawer}
-        >
-            <Button
-                onClick={() => {
-                    setDrawerVisible(false);
-                }}
+    if (window.innerWidth < 576) {
+        return (
+            <Drawer
+                placement="bottom"
+                visible={drawerVisible}
+                mask={false}
+                closable={false}
+                className={classes.drawer}
             >
-                Hide
-            </Button>
+                <Button
+                    onClick={() => {
+                        setDrawerVisible(false);
+                    }}
+                >
+                    Hide
+                </Button>
+                <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
+                    <FoodSelect onChange={onChange} />
+                    <div className={overflowContainer}>
+                        {filteredFarms.map((farmData, i) => (
+                            <FarmCard key={i} data={farmData} />
+                        ))}
+                    </div>
+                </Col>
+            </Drawer>
+        );
+    } else {
+        return (
             <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
-                {/* <Card
+                <Card
                     title="Which foods are you searching for?"
                     className={card}
-                > */}
-                {/* <Text strong>
+                >
+                    <Text strong>
                         Please note: We are currently only serving the San
                         Francisco Bay Area. We will expand from there.
-                    </Text> */}
-                {/* <Divider className={divider} /> */}
-                <FoodSelect onChange={onChange} />
-                <div className={overflowContainer}>
-                    {filteredFarms.map((farmData, i) => (
-                        <FarmCard key={i} data={farmData} />
-                    ))}
-                </div>
-                {/* </Card> */}
+                    </Text>
+                    <Divider className={divider} />
+                    <FoodSelect onChange={onChange} />
+                    <div className={overflowContainer}>
+                        {filteredFarms.map((farmData, i) => (
+                            <FarmCard key={i} data={farmData} />
+                        ))}
+                    </div>
+                </Card>
             </Col>
-        </Drawer>
-    );
+        );
+    }
 };
 
 const useStyles = createUseStyles({
