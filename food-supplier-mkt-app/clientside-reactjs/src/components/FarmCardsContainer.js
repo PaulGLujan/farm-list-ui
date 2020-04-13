@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
-import { Col, Card, Typography, Divider } from 'antd';
+import { Button, Col, Card, Drawer, Typography, Divider } from 'antd';
 import FarmCard from './FarmCard';
 import FoodSelect from './FoodSelect';
 import FarmContext from '../context/farm-context';
 
-const FarmCards = props => {
+const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
     const { farms, fetchAllFarmData } = useContext(FarmContext);
     const [filteredFarms, setFilteredFarms] = useState(farms);
     const classes = useStyles();
@@ -34,25 +34,48 @@ const FarmCards = props => {
     };
 
     return (
-        <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
-            <Card title="Which foods are you searching for?" className={card}>
-                <Text strong>
-                    Please note: We are currently only serving the San Francisco
-                    Bay Area. We will expand from there.
-                </Text>
-                <Divider className={divider} />
+        <Drawer
+            placement="bottom"
+            visible={drawerVisible}
+            mask={false}
+            closable={false}
+            className={classes.drawer}
+        >
+            <Button
+                onClick={() => {
+                    setDrawerVisible(false);
+                }}
+            >
+                Hide
+            </Button>
+            <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
+                {/* <Card
+                    title="Which foods are you searching for?"
+                    className={card}
+                > */}
+                {/* <Text strong>
+                        Please note: We are currently only serving the San
+                        Francisco Bay Area. We will expand from there.
+                    </Text> */}
+                {/* <Divider className={divider} /> */}
                 <FoodSelect onChange={onChange} />
                 <div className={overflowContainer}>
                     {filteredFarms.map((farmData, i) => (
                         <FarmCard key={i} data={farmData} />
                     ))}
                 </div>
-            </Card>
-        </Col>
+                {/* </Card> */}
+            </Col>
+        </Drawer>
     );
 };
 
 const useStyles = createUseStyles({
+    drawer: {
+        '& .ant-drawer-content-wrapper': {
+            height: '320px !important'
+        }
+    },
     card: {
         borderRadius: 10
     },
