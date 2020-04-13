@@ -29,7 +29,7 @@ const useStyles = createUseStyles({
         fontSize: 32,
         marginTop: 12
     },
-    '@media (min-width: 575px)': {
+    '@media (min-width: 576px)': {
         base: {
             display: 'none'
         }

@@ -15,8 +15,8 @@ const App = props => {
     return (
         <GlobalState>
             <Layout>
-                <Header className={classes.header} onClick={()=>{setDrawerVisible(true)}}>
-                    <h1>Help Local Farms, Fishers, and Ranchers <span>SEARCH</span></h1>
+                <Header className={classes.header}>
+                    <h1>Help Local Farms, Fishers, and Ranchers</h1>
                 </Header>
                 <Content>
                     <ViewportContextController>

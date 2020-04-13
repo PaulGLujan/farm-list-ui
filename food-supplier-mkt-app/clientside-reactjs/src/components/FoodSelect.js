@@ -4,10 +4,10 @@ import { Select } from 'antd';
 import FarmContext from '../context/farm-context';
 
 const FoodSelect = ({ onChange }) => {
-    const { farmFoodTypes } = useContext(FarmContext)
+    const { farmFoodTypes } = useContext(FarmContext);
     const isLoading = farmFoodTypes.length > 0 ? false : true;
     const classes = useStyles();
-    const { selectBox } = classes
+    const { selectBox } = classes;
     const { Option } = Select;
 
     return (
@@ -25,13 +25,18 @@ const FoodSelect = ({ onChange }) => {
                 </Option>
             ))}
         </Select>
-    )
-}
+    );
+};
 
 const useStyles = createUseStyles({
     selectBox: {
         width: '100%',
         margin: '0 0 15px 0'
+    },
+    '@media (max-width: 575px)': {
+        selectBox: {
+            width: '92%'
+        }
     }
 });
 
