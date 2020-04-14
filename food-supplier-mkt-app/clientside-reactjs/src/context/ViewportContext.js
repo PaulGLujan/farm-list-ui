@@ -24,9 +24,9 @@ const ViewportContextController = ({ children }) => {
         setViewport(newViewport);
     };
 
+    // All of the keys in the value object can be used via `useContext`
+    // The value prop is the mutable "store" of the context
     return (
-        // All of the keys in the value object can be used via `useContext`
-        // The value prop is the mutable "store" of the context
         <Provider value={{ viewport, setViewport, manualSetViewport }}>
             {children}
         </Provider>
