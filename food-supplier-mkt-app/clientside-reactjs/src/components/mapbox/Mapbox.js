@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { createUseStyles } from 'react-jss';
 import Pins from './Pins';
 import ReactMapGL, { Popup } from 'react-map-gl';
 import FarmContext from '../../context/farm-context';
@@ -12,17 +13,10 @@ const Map = () => {
     const { farms } = useContext(FarmContext);
 
     const [hoverInfo, setHoverInfo] = useState(null);
+    const classes = useStyles();
 
     return (
-        <div
-            style={{
-                position: 'absolute',
-                width: '100%',
-                height: '100%',
-                overflow: 'hidden',
-                visibility: 'inherit'
-            }}
-        >
+        <div className={classes.base}>
             <ReactMapGL
                 {...viewport}
                 onViewportChange={setViewport}
@@ -62,5 +56,20 @@ const renderPopup = selectedMarker => {
     }
     return null;
 };
+
+const useStyles = createUseStyles({
+    base: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        overflow: 'hidden',
+        visibility: 'inherit'
+    },
+    '@media (max-width: 575px)': {
+        base: {
+            position: 'inherit'
+        }
+    }
+});
 
 export default Map;
