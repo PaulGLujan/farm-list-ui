@@ -15,6 +15,7 @@ const FoodSelect = ({ onChange }) => {
             mode="multiple"
             size={'default'}
             placeholder="Please select food"
+            showSearch={false}
             onChange={onChange}
             className={selectBox}
             loading={isLoading}
