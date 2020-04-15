@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Layout } from 'antd';
 import { createUseStyles } from 'react-jss';
+import Div100vh from 'react-div-100vh';
 import Mapbox from './components/mapbox/Mapbox.js';
 import FarmCardsContainer from './components/FarmCardsContainer';
 import MobileFooter from './components/MobileFooter';
@@ -14,30 +15,32 @@ const App = props => {
 
     return (
         <GlobalState>
-            <Layout className={classes.base}>
-                <Header className={classes.header}>
-                    <h1>Help Local Farms, Fishers, and Ranchers</h1>
-                </Header>
-                <Content>
-                    <ViewportContextController>
-                        <Mapbox />
-                        <div className={classes.cardPadding}>
-                            <FarmCardsContainer
-                                drawerVisible={drawerVisible}
-                                setDrawerVisible={setDrawerVisible}
-                            />
-                        </div>
-                    </ViewportContextController>
-                </Content>
-                <MobileFooter setDrawerVisible={setDrawerVisible} />
-            </Layout>
+            <Div100vh>
+                <Layout className={classes.base}>
+                    <Header className={classes.header}>
+                        <h1>Help Local Farms, Fishers, and Ranchers</h1>
+                    </Header>
+                    <Content>
+                        <ViewportContextController>
+                            <Mapbox />
+                            <div className={classes.cardPadding}>
+                                <FarmCardsContainer
+                                    drawerVisible={drawerVisible}
+                                    setDrawerVisible={setDrawerVisible}
+                                />
+                            </div>
+                        </ViewportContextController>
+                    </Content>
+                    <MobileFooter setDrawerVisible={setDrawerVisible} />
+                </Layout>
+            </Div100vh>
         </GlobalState>
     );
 };
 
 const useStyles = createUseStyles({
     base: {
-        height: '100vh',
+        height: 'inherit',
         '& .ant-layout-content': {
             height: 'calc(100% - 64px)'
         }
