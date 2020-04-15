@@ -18,8 +18,13 @@ const Map = () => {
     return (
         <div className={classes.base}>
             <ReactMapGL
+                width="100%"
+                height="100%"
                 {...viewport}
-                onViewportChange={setViewport}
+                onViewportChange={viewport => {
+                    const { width, height, ...etc } = viewport;
+                    setViewport(etc);
+                }}
                 mapboxApiAccessToken={MAPBOX_TOKEN}
                 mapStyle="mapbox://styles/mapbox/streets-v11"
             >

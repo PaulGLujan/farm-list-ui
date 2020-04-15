@@ -13,6 +13,7 @@
     "axios": "^0.19.2",
     "mapbox-gl": "^1.8.1",
     "react": "^16.13.1",
+    "react-div-100vh": "^0.3.8",
     "react-dom": "^16.13.1",
     "react-jss": "^10.1.1",
     "react-map-gl": "^5.2.3",
