@@ -2,38 +2,21 @@
 
 ### Project description
 
-A project to provide an informal/non-bureaucratic, opensource food supplier portal to help our ranchers, fishers, farmers get through COVID-19 and beyond.
+A project to provide an opensource food supplier portal to help our ranchers, fishers, farmers get through COVID-19 and beyond.
 
-Our first MVP Goal is a visual & data platform which allow suppliers and wholesale purchasers to identify each other, connect, communicate, receive real time qual/quant updates, and fulfill their own transactions & logistics.
+Our first MVP Goal is to inform customers where they can buy locally grown food. 
 
 [HelpWithCovid Project Page](https://helpwithcovid.com/projects/43)
 
 ### Tech stack
-- Server: NodeJS  
-  - V0/Dev Testing - Initially, with ExpressJS Dev Environments + A test server on Linux/Nginx.  
-  - v1 - However, soon we will deploy to AWS-- we will probably move the expressJS routes into individual Lambdas, usign AWS Lambda REST API.
-  - DB: Airtable
-
 
 - App Clientside: ReactJS
   - Clientside Design: [Ant Design](https://ant.design/components/grid/) for frontend design components, 
-  - Clientside Datatables: [react-bootstrap-table2](https://react-bootstrap-table.github.io/react-bootstrap-table2/storybook/index.html) for frontend data tables (unless there are better suggestions)
-  - Clientside maps: [Mapbox-gl](https://docs.mapbox.com/mapbox-gl-js/example/popup-on-click/) for mapping -- Example in our repo:  https://gitlab.com/pmeaney/food-supplier-mkt-app/-/blob/master/food-supplier-mkt-app/clientside-reactjs/src/Mapbox.js
-  - Resource Note: there's also react-mapbox-gl which is a react wrapper for mapbox-gl.  Two sets of docs as examples: https://uber.github.io/react-map-gl/docs https://github.com/alex3165/react-mapbox-gla
-
+  - Clientside maps: [react-map-gl](https://github.com/visgl/react-map-gl) for mapping
 
 - Deployment
-  - AWS via Serverless stack (https://www.serverless.com) (or similar serverless lambda frameworks)
+  - AWS S3 with Cloudfront and Route 53 
   - Resource Note: This is a good intro to AWS Serverless stack deployment of full stack ReactJS/Nodejs apps https://serverless-stack.com/chapters/why-create-serverless-apps.html
-
-
-
-### UI Views -- Seeking ReactJS Developers & UI Designers
-
-- For Mapping -- Talk to Bobby if you're interested in working on map related stuff, just to get an intro to the plan there with web-gl, as he has experience with Mapping technology, GeoJson, web-gl, etc.
-
-- To see UI View sketches of views visit the [ReactJS Project Directory](https://gitlab.com/pmeaney/food-supplier-mkt-app/-/tree/master/food-supplier-mkt-app/clientside-reactjs) to see sketches in its README.md documentation
-Views -- (Feel free to code up your own version, we then we can compare ideas) (note: "Farm" is short for "Food Supplier")
 
 #. Current basis - WorkingNameForUi 
 
