@@ -10,41 +10,43 @@ const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_API_TOKEN;
 
 const Map = () => {
     const { viewport, setViewport } = useContext(ViewportContext);
-    const { farmsData } = useContext(FarmsContext);
-    const { filteredFarms } = farmsData
 
     const [hoverInfo, setHoverInfo] = useState(null);
     const classes = useStyles();
 
     return (
-        <div className={classes.base}>
-            <ReactMapGL
-                width="100%"
-                height="100%"
-                {...viewport}
-                onViewportChange={viewport => {
-                    const { width, height, ...etc } = viewport;
-                    setViewport(etc);
-                }}
-                mapboxApiAccessToken={MAPBOX_TOKEN}
-                mapStyle="mapbox://styles/mapbox/streets-v11"
-            >
-                {filteredFarms.map(({ Coordinates: coordinates, Name: name }, i) => (
-                    <Pins
-                        key={`pins-${i}`}
-                        onHover={isHovered => {
-                            if (isHovered) {
-                                setHoverInfo({ coordinates, name });
-                            } else {
-                                setHoverInfo(null);
-                            }
+        <FarmsContext.Consumer>
+            {({ farmsData }) => (
+                <div className={classes.base}>
+                    <ReactMapGL
+                        width="100%"
+                        height="100%"
+                        {...viewport}
+                        onViewportChange={viewport => {
+                            const { width, height, ...etc } = viewport;
+                            setViewport(etc);
                         }}
-                        coordinates={coordinates}
-                    />
-                ))}
-                {renderPopup(hoverInfo)}
-            </ReactMapGL>
-        </div>
+                        mapboxApiAccessToken={MAPBOX_TOKEN}
+                        mapStyle="mapbox://styles/mapbox/streets-v11"
+                    >
+                        {(farmsData.filteredFarms.length === 0 ? farmsData.farms : farmsData.filteredFarms).map(({ Coordinates: coordinates, Name: name }, i) => (
+                            <Pins
+                                key={`pins-${i}`}
+                                onHover={isHovered => {
+                                    if (isHovered) {
+                                        setHoverInfo({ coordinates, name });
+                                    } else {
+                                        setHoverInfo(null);
+                                    }
+                                }}
+                                coordinates={coordinates}
+                            />
+                        ))}
+                        {renderPopup(hoverInfo)}
+                    </ReactMapGL>
+                </div>
+            )}
+        </FarmsContext.Consumer>
     );
 };
 
