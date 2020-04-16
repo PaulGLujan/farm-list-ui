@@ -19,17 +19,15 @@ const FarmsContextController = ({ children }) => {
                 // getAllAirtableData() returns an object containing two arrays
                 // for complete farm data and unique food types.
                 const response = await getAllAirtableData();
-                console.log(response)
                 const { farms, uniqueFarmFoodTypes } = response
 
-                const newFarmData = {
+                const newFarmsData = {
                     ...farmsData,
                     farms,
                     farmFoodTypes: uniqueFarmFoodTypes,
                 }
 
-                console.log(newFarmData)
-                await setFarmsData(newFarmData)
+                await setFarmsData(newFarmsData)
 
                 resolve(farms);
             } catch (err) {
@@ -40,12 +38,13 @@ const FarmsContextController = ({ children }) => {
     }
 
     const filterFarms = filteredFarms => {
-        const newFarmData = {
+        console.log(farmsData)
+
+        const newFarmsData = {
             ...farmsData,
             filteredFarms
         }
-
-        setFarmsData(newFarmData)
+        setFarmsData(newFarmsData)
     }
 
     return (

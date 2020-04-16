@@ -14,11 +14,7 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
 
     // Entry point for fetching all Farm Data from Airtable
     useEffect(() => {
-        async function fetchData() {
-            const farms = await fetchAllFarmData();
-            filterFarms(farms)
-        }
-        fetchData();
+        fetchAllFarmData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -34,46 +30,50 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
     };
     if (window.innerWidth < 576) {
         return (
-            <Drawer
-                placement="bottom"
-                visible={drawerVisible}
-                closable={false}
-                className={classes.drawer}
-                closable={true}
-                onClose={() => {
-                    setDrawerVisible(false);
-                }}
-            >
-                <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
-                    <FoodSelect onChange={onChange} />
-                    <div className={overflowContainer}>
-                        {filteredFarms.map((farmData, i) => (
-                            <FarmCard key={i} data={farmData} />
-                        ))}
-                    </div>
-                </Col>
-            </Drawer>
+            <FarmsContext.Consumer>
+                {({ farmsData }) => (
+                    <Drawer
+                        placement="bottom"
+                        visible={drawerVisible}
+                        closable={false}
+                        className={classes.drawer}
+                        closable={true}
+                        onClose={() => {
+                            setDrawerVisible(false);
+                        }}
+                    >
+                        <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
+                            <FoodSelect onChange={onChange} />
+                            <div className={overflowContainer}>
+                                {((farmsData.filteredFarms.length === 0) ? farmsData.farms : farmsData.filteredFarms).map((farmData, i) => <FarmCard key={i} data={farmData} />)}
+                            </div>
+                        </Col>
+                    </Drawer>
+                )}
+            </FarmsContext.Consumer>
         );
     } else {
         return (
-            <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
-                <Card
-                    title="Which foods are you searching for?"
-                    className={card}
-                >
-                    <Text strong>
-                        Please note: We are currently only serving the San
-                        Francisco Bay Area. We will expand from there.
-                    </Text>
-                    <Divider className={divider} />
-                    <FoodSelect onChange={onChange} />
-                    <div className={overflowContainer}>
-                        {filteredFarms.map((farmData, i) => (
-                            <FarmCard key={i} data={farmData} />
-                        ))}
-                    </div>
-                </Card>
-            </Col>
+            <FarmsContext.Consumer>
+                {({ farmsData }) => (
+                    <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
+                        <Card
+                            title="Which foods are you searching for?"
+                            className={card}
+                        >
+                            <Text strong>
+                                Please note: We are currently only serving the San
+                                Francisco Bay Area. We will expand from there.
+                            </Text>
+                            <Divider className={divider} />
+                            <FoodSelect onChange={onChange} />
+                            <div className={overflowContainer}>
+                                {((farmsData.filteredFarms.length === 0) ? farmsData.farms : farmsData.filteredFarms).map((farmData, i) => <FarmCard key={i} data={farmData} />)}
+                            </div>
+                        </Card>
+                    </Col>
+                )}
+            </FarmsContext.Consumer>
         );
     }
 };
