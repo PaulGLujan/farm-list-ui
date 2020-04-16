@@ -10,8 +10,8 @@ const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_API_TOKEN;
 
 const Map = () => {
     const { viewport, setViewport } = useContext(ViewportContext);
-    const { farms } = useContext(FarmsContext);
-
+    const { farmsData } = useContext(FarmsContext);
+    const { filteredFarms } = farmsData
 
     const [hoverInfo, setHoverInfo] = useState(null);
     const classes = useStyles();
@@ -29,7 +29,7 @@ const Map = () => {
                 mapboxApiAccessToken={MAPBOX_TOKEN}
                 mapStyle="mapbox://styles/mapbox/streets-v11"
             >
-                {farms.map(({ Coordinates: coordinates, Name: name }, i) => (
+                {filteredFarms.map(({ Coordinates: coordinates, Name: name }, i) => (
                     <Pins
                         key={`pins-${i}`}
                         onHover={isHovered => {
