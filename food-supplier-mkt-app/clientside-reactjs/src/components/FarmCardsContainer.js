@@ -1,12 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
-import { Button, Col, Card, Drawer, Typography, Divider } from 'antd';
+import { Col, Card, Drawer, Typography, Divider } from 'antd';
 import FarmCard from './FarmCard';
 import FoodSelect from './FoodSelect';
-import FarmContext from '../context/farm-context';
+import { FarmsContext } from '../context/FarmsContext';
 
 const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
-    const { farms, fetchAllFarmData } = useContext(FarmContext);
+    const { farms, fetchAllFarmData } = useContext(FarmsContext);
+    console.log(farms)
     const [filteredFarms, setFilteredFarms] = useState(farms);
     const classes = useStyles();
     const { Text } = Typography;
@@ -14,11 +15,8 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
 
     // Entry point for fetching all Farm Data from Airtable
     useEffect(() => {
-        async function fetchData() {
-            const initialFarms = await fetchAllFarmData();
-            setFilteredFarms(initialFarms);
-        }
-        fetchData();
+        fetchAllFarmData();
+        setFilteredFarms(farms)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -68,6 +66,7 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
                     <Divider className={divider} />
                     <FoodSelect onChange={onChange} />
                     <div className={overflowContainer}>
+                        {/* {console.log(filteredFarms)} */}
                         {filteredFarms.map((farmData, i) => (
                             <FarmCard key={i} data={farmData} />
                         ))}

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Select } from 'antd';
-import FarmContext from '../context/farm-context';
+import { FarmsContext } from '../context/FarmsContext';
 
 const FoodSelect = ({ onChange }) => {
-    const { farmFoodTypes } = useContext(FarmContext);
+    const { farmFoodTypes } = useContext(FarmsContext);
     const isLoading = farmFoodTypes.length > 0 ? false : true;
     const classes = useStyles();
     const { selectBox } = classes;
