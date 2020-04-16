@@ -23,7 +23,8 @@ const useStyles = createUseStyles({
         width: '100%',
         position: 'absolute',
         bottom: 0,
-        textAlign: 'center'
+        textAlign: 'center',
+        zIndex: 2
     },
     searchIcon: {
         fontSize: 32,
