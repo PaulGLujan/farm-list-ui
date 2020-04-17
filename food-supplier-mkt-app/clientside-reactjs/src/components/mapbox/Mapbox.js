@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import Pins from './Pins';
-import ReactMapGL, { Popup } from 'react-map-gl';
+import ReactMapGL from 'react-map-gl';
 import { FarmsContext } from '../../context/FarmsContext';
 import { ViewportContext } from '../../context/ViewportContext';
 import MarkerPopup from './MarkerPopup';
