@@ -13,7 +13,7 @@ const FoodSelect = ({ onChange }) => {
 
     return (
         <FarmsContext.Consumer>
-            {({ farmsData }) => (
+            {({ farmsData: { farmFoodTypes } }) => (
                 <Select
                     mode="multiple"
                     size={'default'}
@@ -23,8 +23,7 @@ const FoodSelect = ({ onChange }) => {
                     className={selectBox}
                     loading={isLoading}
                 >
-
-                {farmsData.farmFoodTypes.map((food, i) => (
+                {farmFoodTypes.map((food, i) => (
                     <Option key={i} value={food}>
                         {food}
                     </Option>
@@ -32,7 +31,6 @@ const FoodSelect = ({ onChange }) => {
                 </Select>
             )}
         </FarmsContext.Consumer>
-
     );
 };
 
@@ -49,33 +47,3 @@ const useStyles = createUseStyles({
 });
 
 export default (FoodSelect);
-
-{/* <IndexContext.Consumer>
-{({ handleChange }) => (
-    <TouchableOpacity onPress={handleChange(props.index)}>
-        <AsyncImage
-            source={ props.img_src }
-            placeholderColor="#fafafa"
-            style={{ flex: 1, width: null, height: 200 }}
-        />
-        <Text>{ props.var_name }</Text>
-        <Text>{ props.price }</Text>
-        <Text>{ props.sku }</Text>
-    </TouchableOpacity>
-)};
-</IndexContext.Consumer>
-
-<IndexContext.Consumer>
-    {({ handleChange }) => (
-        <TouchableOpacity onPress={handleChange(props.index)}>
-            <AsyncImage
-                source={ props.img_src }
-                placeholderColor="#fafafa"
-                style={{ flex: 1, width: null, height: 200 }}
-            />
-            <Text>{ props.var_name }</Text>
-            <Text>{ props.price }</Text>
-            <Text>{ props.sku }</Text>
-        </TouchableOpacity>
-    )}
-</IndexContext.Consumer> */}
