@@ -18,7 +18,7 @@ const App = props => {
             <Div100vh>
                 <Layout className={classes.base}>
                     <Header className={classes.header}>
-                        <h1>Help Local Farms, Fishers, and Ranchers</h1>
+                        <h1>Farm List - Pushed to develop</h1>
                     </Header>
                     <Content>
                         <ViewportContextController>
