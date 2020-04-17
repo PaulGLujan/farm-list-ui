@@ -5,8 +5,8 @@ import Div100vh from 'react-div-100vh';
 import Mapbox from './components/mapbox/Mapbox.js';
 import FarmCardsContainer from './components/FarmCardsContainer';
 import MobileFooter from './components/MobileFooter';
-import GlobalState from './context/GlobalState';
 import { ViewportContextController } from './context/ViewportContext';
+import { FarmsContextController } from './context/FarmsContext.js';
 
 const App = props => {
     const classes = useStyles();
@@ -14,13 +14,13 @@ const App = props => {
     const [drawerVisible, setDrawerVisible] = useState(true);
 
     return (
-        <GlobalState>
-            <Div100vh>
-                <Layout className={classes.base}>
-                    <Header className={classes.header}>
-                        <h1>Farm List - Pushed to develop</h1>
-                    </Header>
-                    <Content>
+        <Div100vh>
+            <Layout className={classes.base}>
+                <Header className={classes.header}>
+                    <h1>Farm List - Pushed to develop</h1>
+                </Header>
+                <Content>
+                    <FarmsContextController>
                         <ViewportContextController>
                             <Mapbox />
                             <div className={classes.cardPadding}>
@@ -30,11 +30,11 @@ const App = props => {
                                 />
                             </div>
                         </ViewportContextController>
-                    </Content>
-                    <MobileFooter setDrawerVisible={setDrawerVisible} />
-                </Layout>
-            </Div100vh>
-        </GlobalState>
+                    </FarmsContextController>
+                </Content>
+                <MobileFooter setDrawerVisible={setDrawerVisible} />
+            </Layout>
+        </Div100vh>
     );
 };
 
