@@ -13,33 +13,24 @@ const { Provider } = FarmsContext
 const FarmsContextController = ({ children }) => {
     const [farmsData, setFarmsData] = useState(initialFarmsData)
 
-    const fetchAllFarmData = () => {
-        return new Promise(async (resolve, reject) => {
+    const fetchAllFarmData = async () => {
             try {
                 // getAllAirtableData() returns an object containing two arrays
                 // for complete farm data and unique food types.
                 const response = await getAllAirtableData();
-                const { farms, uniqueFarmFoodTypes } = response
-
+                const { farms, farmFoodTypes } = response
                 const newFarmsData = {
                     ...farmsData,
                     farms,
-                    farmFoodTypes: uniqueFarmFoodTypes,
+                    farmFoodTypes,
                 }
-
                 await setFarmsData(newFarmsData)
-
-                resolve(farms);
             } catch (err) {
                 console.log(err)
-                reject(err);
             }
-        });
     }
 
     const filterFarms = filteredFarms => {
-        console.log(farmsData)
-
         const newFarmsData = {
             ...farmsData,
             filteredFarms
