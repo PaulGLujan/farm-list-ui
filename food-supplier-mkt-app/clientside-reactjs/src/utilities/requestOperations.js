@@ -13,16 +13,27 @@ export const getAllAirtableData = async () => {
         const response = await airtable.read({});
 
         const farms = [];
-        const farmFoodTypes = []
+        const farmFoodTypes = [];
 
         response.forEach(record => {
-            const { Name, About, Contact, Type, WebsiteURL, ImageURL, Latitude, Longitude } = record.fields
+            const {
+                Name,
+                About,
+                Contact,
+                Type,
+                WebsiteURL,
+                ImageURL,
+                Latitude,
+                Longitude
+            } = record.fields;
 
             // Returns tag names if value is true.
             // Additional tag cells on Airtable must also be checkboxes for this to work.
-            const Tags = Object.keys(record.fields).filter(k => record.fields[k] === true)
+            const Tags = Object.keys(record.fields).filter(
+                k => record.fields[k] === true
+            );
 
-            farmFoodTypes.push(Type)
+            farmFoodTypes.push(Type);
             farms.push({
                 Name,
                 About,
@@ -34,16 +45,16 @@ export const getAllAirtableData = async () => {
                 Coordinates: {
                     latitude: Latitude,
                     longitude: Longitude
-                },
-            })
-        })
+                }
+            });
+        });
 
         return {
             farms,
             // Filters types for unique values only.
             farmFoodTypes: [...new Set(farmFoodTypes.flat())]
-        }
-    }catch (err) {
-        console.log(err)
+        };
+    } catch (err) {
+        console.log(err);
     }
-}
+};
