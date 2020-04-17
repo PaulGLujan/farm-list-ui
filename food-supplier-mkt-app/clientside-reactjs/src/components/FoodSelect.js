@@ -12,8 +12,6 @@ const FoodSelect = ({ onChange }) => {
     const { Option } = Select;
 
     return (
-        <FarmsContext.Consumer>
-            {({ farmsData: { farmFoodTypes } }) => (
                 <Select
                     mode="multiple"
                     size={'default'}
@@ -29,8 +27,6 @@ const FoodSelect = ({ onChange }) => {
                     </Option>
                 ))}
                 </Select>
-            )}
-        </FarmsContext.Consumer>
     );
 };
 
