@@ -23,7 +23,7 @@ const FoodSelect = ({ onChange }) => {
                     className={selectBox}
                     // loading={isLoading}
                 >
-                    {console.log(farmsData.farmFoodTypes)}
+
                 {farmsData.farmFoodTypes.map((food, i) => (
                     <Option key={i} value={food}>
                         {food}
