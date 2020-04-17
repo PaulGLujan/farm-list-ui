@@ -18,8 +18,6 @@ const Map = () => {
     const classes = useStyles();
 
     return (
-        // <FarmsContext.Consumer>
-        //     {({ farmsData: { farms, filteredFarms } }) => (
         <div className={classes.base}>
             <ReactMapGL
                 width="100%"
@@ -51,8 +49,6 @@ const Map = () => {
                 {renderPopup(hoverInfo)}
             </ReactMapGL>
         </div>
-        //     )}
-        // </FarmsContext.Consumer>
     );
 };
 
