@@ -5,7 +5,6 @@ import Div100vh from 'react-div-100vh';
 import Mapbox from './components/mapbox/Mapbox.js';
 import FarmCardsContainer from './components/FarmCardsContainer';
 import MobileFooter from './components/MobileFooter';
-// import GlobalState from './context/GlobalState';
 import { ViewportContextController } from './context/ViewportContext';
 import { FarmsContextController } from './context/FarmsContext.js';
 
@@ -15,7 +14,6 @@ const App = props => {
     const [drawerVisible, setDrawerVisible] = useState(true);
 
     return (
-        // <GlobalState>
         <FarmsContextController>
             <Div100vh>
                 <Layout className={classes.base}>
@@ -37,7 +35,6 @@ const App = props => {
                 </Layout>
             </Div100vh>
         </FarmsContextController>
-        // </GlobalState>
     );
 };
 
