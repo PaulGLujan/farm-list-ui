@@ -16,7 +16,7 @@ const Map = () => {
 
     return (
         <FarmsContext.Consumer>
-            {({ farmsData }) => (
+            {({ farmsData: { farms, filteredFarms } }) => (
                 <div className={classes.base}>
                     <ReactMapGL
                         width="100%"
@@ -29,7 +29,7 @@ const Map = () => {
                         mapboxApiAccessToken={MAPBOX_TOKEN}
                         mapStyle="mapbox://styles/mapbox/streets-v11"
                     >
-                        {(farmsData.filteredFarms.length === 0 ? farmsData.farms : farmsData.filteredFarms).map(({ Coordinates: coordinates, Name: name }, i) => (
+                        {(filteredFarms.length > 0 ? filteredFarms : farms).map(({ Coordinates: coordinates, Name: name }, i) => (
                             <Pins
                                 key={`pins-${i}`}
                                 onHover={isHovered => {
