@@ -31,7 +31,7 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
     if (window.innerWidth < 576) {
         return (
             <FarmsContext.Consumer>
-                {({ farmsData }) => (
+                {({ farmsData: { farms, filteredFarms } }) => (
                     <Drawer
                         placement="bottom"
                         visible={drawerVisible}
@@ -45,7 +45,7 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
                         <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
                             <FoodSelect onChange={onChange} />
                             <div className={overflowContainer}>
-                                {((farmsData.filteredFarms.length === 0) ? farmsData.farms : farmsData.filteredFarms).map((farmData, i) => <FarmCard key={i} data={farmData} />)}
+                                {((filteredFarms.length > 0) ? filteredFarms : farms).map((farmData, i) => <FarmCard key={i} data={farmData} />)}
                             </div>
                         </Col>
                     </Drawer>
@@ -55,7 +55,7 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
     } else {
         return (
             <FarmsContext.Consumer>
-                {({ farmsData }) => (
+                {({ farmsData: { farms, filteredFarms } }) => (
                     <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
                         <Card
                             title="Which foods are you searching for?"
@@ -68,7 +68,7 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
                             <Divider className={divider} />
                             <FoodSelect onChange={onChange} />
                             <div className={overflowContainer}>
-                                {((farmsData.filteredFarms.length === 0) ? farmsData.farms : farmsData.filteredFarms).map((farmData, i) => <FarmCard key={i} data={farmData} />)}
+                                {((filteredFarms.length > 0) ? filteredFarms : farms).map((farmData, i) => <FarmCard key={i} data={farmData} />)}
                             </div>
                         </Card>
                     </Col>
