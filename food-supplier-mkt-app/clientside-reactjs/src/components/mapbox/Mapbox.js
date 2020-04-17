@@ -32,6 +32,7 @@ const Map = () => {
                         {(filteredFarms.length > 0 ? filteredFarms : farms).map(({ Coordinates: coordinates, Name: name }, i) => (
                             <Pins
                                 key={`pins-${i}`}
+                                name={name}
                                 onHover={isHovered => {
                                     if (isHovered) {
                                         setHoverInfo({ coordinates, name });
