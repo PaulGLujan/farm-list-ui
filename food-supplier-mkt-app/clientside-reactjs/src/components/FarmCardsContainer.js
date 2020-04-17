@@ -1,79 +1,69 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { createUseStyles } from 'react-jss';
-import { Button, Col, Card, Drawer, Typography, Divider } from 'antd';
+import { Col, Card, Drawer, Typography, Divider } from 'antd';
 import FarmCard from './FarmCard';
 import FoodSelect from './FoodSelect';
-import FarmContext from '../context/farm-context';
+import { FarmsContext } from '../context/FarmsContext';
 
 const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
-    const { farms, fetchAllFarmData } = useContext(FarmContext);
-    const [filteredFarms, setFilteredFarms] = useState(farms);
     const classes = useStyles();
     const { Text } = Typography;
     const { card, divider, overflowContainer } = classes;
-
-    // Entry point for fetching all Farm Data from Airtable
-    useEffect(() => {
-        async function fetchData() {
-            const initialFarms = await fetchAllFarmData();
-            setFilteredFarms(initialFarms);
+    const {
+        filterFarms,
+        farmsData: {
+            farms,
+            filteredFarms
         }
-        fetchData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    } = useContext(FarmsContext);
 
     const onChange = filters => {
         // Render farm if farm.Type array contains one or more elements in the filters array
-        setFilteredFarms(
+        filterFarms(
             filters.length > 0
                 ? farms.filter(farm =>
-                      filters.some(f => farm.Type.indexOf(f) >= 0)
-                  )
+                        filters.some(f => farm.Type.indexOf(f) >= 0)
+                    )
                 : farms
         );
     };
     if (window.innerWidth < 576) {
         return (
-            <Drawer
-                placement="bottom"
-                visible={drawerVisible}
-                closable={false}
-                className={classes.drawer}
-                closable={true}
-                onClose={() => {
-                    setDrawerVisible(false);
-                }}
-            >
-                <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
-                    <FoodSelect onChange={onChange} />
-                    <div className={overflowContainer}>
-                        {filteredFarms.map((farmData, i) => (
-                            <FarmCard key={i} data={farmData} />
-                        ))}
-                    </div>
-                </Col>
-            </Drawer>
+                    <Drawer
+                        placement="bottom"
+                        visible={drawerVisible}
+                        className={classes.drawer}
+                        closable={true}
+                        onClose={() => {
+                            setDrawerVisible(false);
+                        }}
+                    >
+                        <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
+                            <FoodSelect onChange={onChange} />
+                            <div className={overflowContainer}>
+                                {((filteredFarms.length > 0) ? filteredFarms : farms).map((farmData, i) => <FarmCard key={i} data={farmData} />)}
+                            </div>
+                        </Col>
+                    </Drawer>
         );
     } else {
         return (
-            <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
-                <Card
-                    title="Which foods are you searching for?"
-                    className={card}
-                >
-                    <Text strong>
-                        Please note: We are currently only serving the San
-                        Francisco Bay Area. We will expand from there.
-                    </Text>
-                    <Divider className={divider} />
-                    <FoodSelect onChange={onChange} />
-                    <div className={overflowContainer}>
-                        {filteredFarms.map((farmData, i) => (
-                            <FarmCard key={i} data={farmData} />
-                        ))}
-                    </div>
-                </Card>
-            </Col>
+                    <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
+                        <Card
+                            title="Which foods are you searching for?"
+                            className={card}
+                        >
+                            <Text strong>
+                                Please note: We are currently only serving the San
+                                Francisco Bay Area. We will expand from there.
+                            </Text>
+                            <Divider className={divider} />
+                            <FoodSelect onChange={onChange} />
+                            <div className={overflowContainer}>
+                                {((filteredFarms.length > 0) ? filteredFarms : farms).map((farmData, i) => <FarmCard key={i} data={farmData} />)}
+                            </div>
+                        </Card>
+                    </Col>
         );
     }
 };
