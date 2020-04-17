@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Col, Card, Drawer, Typography, Divider } from 'antd';
 import FarmCard from './FarmCard';
@@ -7,7 +7,7 @@ import { FarmsContext } from '../context/FarmsContext';
 
 const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
     const { farmsData, filterFarms, fetchAllFarmData } = useContext(FarmsContext);
-    const { filteredFarms, farms } = farmsData
+    const { farms } = farmsData
     const classes = useStyles();
     const { Text } = Typography;
     const { card, divider, overflowContainer } = classes;
