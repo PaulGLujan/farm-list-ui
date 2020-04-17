@@ -4,9 +4,9 @@ import { Select } from 'antd';
 import { FarmsContext } from '../context/FarmsContext';
 
 const FoodSelect = ({ onChange }) => {
-    // const { farmsData } = useContext(FarmsContext);
-    // const { farmFoodTypes } = farmsData
-    // const isLoading = farmFoodTypes.length > 0 ? false : true;
+    const { farmsData } = useContext(FarmsContext);
+    const { farmFoodTypes } = farmsData
+    const isLoading = farmFoodTypes.length > 0 ? false : true;
     const classes = useStyles();
     const { selectBox } = classes;
     const { Option } = Select;
@@ -21,7 +21,7 @@ const FoodSelect = ({ onChange }) => {
                     showSearch={false}
                     onChange={onChange}
                     className={selectBox}
-                    // loading={isLoading}
+                    loading={isLoading}
                 >
 
                 {farmsData.farmFoodTypes.map((food, i) => (
