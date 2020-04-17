@@ -38,13 +38,10 @@ export const getAllAirtableData = async () => {
             })
         })
 
-        // Filters types for unique values only.
-        // Values used in components/FoodSelect.js
-        const uniqueFarmFoodTypes = [...new Set(farmFoodTypes.flat())]
-
         return {
-            farms, 
-            uniqueFarmFoodTypes
+            farms,
+            // Filters types for unique values only.
+            farmFoodTypes: [...new Set(farmFoodTypes.flat())]
         }
     }catch (err) {
         console.log(err)
