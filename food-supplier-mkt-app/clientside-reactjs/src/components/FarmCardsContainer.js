@@ -6,11 +6,16 @@ import FoodSelect from './FoodSelect';
 import { FarmsContext } from '../context/FarmsContext';
 
 const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
-    const { farmsData, filterFarms, fetchAllFarmData } = useContext(FarmsContext);
-    const { farms } = farmsData
     const classes = useStyles();
     const { Text } = Typography;
     const { card, divider, overflowContainer } = classes;
+    const {
+        filterFarms,
+        fetchAllFarmData,
+        farmsData: {
+            farms
+        }
+    } = useContext(FarmsContext);
 
     // Entry point for fetching all Farm Data from Airtable
     useEffect(() => {
