@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { getAllAirtableData } from '../utilities/requestOperations';
 
 const initialFarmsData = {
@@ -12,6 +12,12 @@ const { Provider } = FarmsContext
 
 const FarmsContextController = ({ children }) => {
     const [farmsData, setFarmsData] = useState(initialFarmsData)
+
+      // Entry point for fetching all Farm Data from Airtable
+      useEffect(() => {
+        fetchAllFarmData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const fetchAllFarmData = async () => {
             try {

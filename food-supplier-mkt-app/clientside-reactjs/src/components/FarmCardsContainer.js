@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Col, Card, Drawer, Typography, Divider } from 'antd';
 import FarmCard from './FarmCard';
@@ -11,17 +11,11 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
     const { card, divider, overflowContainer } = classes;
     const {
         filterFarms,
-        fetchAllFarmData,
         farmsData: {
-            farms
+            farms,
+            filteredFarms
         }
     } = useContext(FarmsContext);
-
-    // Entry point for fetching all Farm Data from Airtable
-    useEffect(() => {
-        fetchAllFarmData();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     const onChange = filters => {
         // Render farm if farm.Type array contains one or more elements in the filters array
@@ -35,8 +29,6 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
     };
     if (window.innerWidth < 576) {
         return (
-            <FarmsContext.Consumer>
-                {({ farmsData: { farms, filteredFarms } }) => (
                     <Drawer
                         placement="bottom"
                         visible={drawerVisible}
@@ -53,13 +45,9 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
                             </div>
                         </Col>
                     </Drawer>
-                )}
-            </FarmsContext.Consumer>
         );
     } else {
         return (
-            <FarmsContext.Consumer>
-                {({ farmsData: { farms, filteredFarms } }) => (
                     <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
                         <Card
                             title="Which foods are you searching for?"
@@ -76,8 +64,6 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
                             </div>
                         </Card>
                     </Col>
-                )}
-            </FarmsContext.Consumer>
         );
     }
 };

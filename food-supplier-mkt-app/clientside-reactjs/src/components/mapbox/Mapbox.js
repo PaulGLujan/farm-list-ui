@@ -10,13 +10,19 @@ const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_API_TOKEN;
 
 const Map = () => {
     const { viewport, setViewport } = useContext(ViewportContext);
+    const {
+        farmsData: {
+            farms,
+            filteredFarms
+        }
+    } = useContext(FarmsContext);
 
     const [hoverInfo, setHoverInfo] = useState(null);
     const classes = useStyles();
 
     return (
-        <FarmsContext.Consumer>
-            {({ farmsData: { farms, filteredFarms } }) => (
+        // <FarmsContext.Consumer>
+        //     {({ farmsData: { farms, filteredFarms } }) => (
                 <div className={classes.base}>
                     <ReactMapGL
                         width="100%"
@@ -46,8 +52,8 @@ const Map = () => {
                         {renderPopup(hoverInfo)}
                     </ReactMapGL>
                 </div>
-            )}
-        </FarmsContext.Consumer>
+        //     )}
+        // </FarmsContext.Consumer>
     );
 };
 

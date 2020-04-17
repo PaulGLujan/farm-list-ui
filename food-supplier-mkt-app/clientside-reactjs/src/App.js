@@ -14,13 +14,13 @@ const App = props => {
     const [drawerVisible, setDrawerVisible] = useState(true);
 
     return (
-        <FarmsContextController>
-            <Div100vh>
-                <Layout className={classes.base}>
-                    <Header className={classes.header}>
-                        <h1>Help Local Farms, Fishers, and Ranchers</h1>
-                    </Header>
-                    <Content>
+        <Div100vh>
+            <Layout className={classes.base}>
+                <Header className={classes.header}>
+                    <h1>Help Local Farms, Fishers, and Ranchers</h1>
+                </Header>
+                <Content>
+                    <FarmsContextController>
                         <ViewportContextController>
                             <Mapbox />
                             <div className={classes.cardPadding}>
@@ -30,11 +30,11 @@ const App = props => {
                                 />
                             </div>
                         </ViewportContextController>
-                    </Content>
-                    <MobileFooter setDrawerVisible={setDrawerVisible} />
-                </Layout>
-            </Div100vh>
-        </FarmsContextController>
+                    </FarmsContextController>
+                </Content>
+                <MobileFooter setDrawerVisible={setDrawerVisible} />
+            </Layout>
+        </Div100vh>
     );
 };
 
