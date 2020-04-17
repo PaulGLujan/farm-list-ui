@@ -35,7 +35,6 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
                     <Drawer
                         placement="bottom"
                         visible={drawerVisible}
-                        closable={false}
                         className={classes.drawer}
                         closable={true}
                         onClose={() => {
