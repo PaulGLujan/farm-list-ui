@@ -11,10 +11,7 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
     const { card, divider, overflowContainer } = classes;
     const {
         filterFarms,
-        farmsData: {
-            farms,
-            filteredFarms
-        }
+        farmsData: { farms, filteredFarms }
     } = useContext(FarmsContext);
 
     const onChange = filters => {
@@ -22,48 +19,56 @@ const FarmCards = ({ drawerVisible, setDrawerVisible }) => {
         filterFarms(
             filters.length > 0
                 ? farms.filter(farm =>
-                        filters.some(f => farm.Type.indexOf(f) >= 0)
-                    )
+                      filters.some(f => farm.Type.indexOf(f) >= 0)
+                  )
                 : farms
         );
     };
     if (window.innerWidth < 576) {
         return (
-                    <Drawer
-                        placement="bottom"
-                        visible={drawerVisible}
-                        className={classes.drawer}
-                        closable={true}
-                        onClose={() => {
-                            setDrawerVisible(false);
-                        }}
-                    >
-                        <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
-                            <FoodSelect onChange={onChange} />
-                            <div className={overflowContainer}>
-                                {((filteredFarms.length > 0) ? filteredFarms : farms).map((farmData, i) => <FarmCard key={i} data={farmData} />)}
-                            </div>
-                        </Col>
-                    </Drawer>
+            <Drawer
+                placement="bottom"
+                visible={drawerVisible}
+                className={classes.drawer}
+                closable={true}
+                onClose={() => {
+                    setDrawerVisible(false);
+                }}
+            >
+                <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
+                    <FoodSelect onChange={onChange} />
+                    <div className={overflowContainer}>
+                        {(filteredFarms.length > 0 ? filteredFarms : farms).map(
+                            (farmData, i) => (
+                                <FarmCard key={i} data={farmData} />
+                            )
+                        )}
+                    </div>
+                </Col>
+            </Drawer>
         );
     } else {
         return (
-                    <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
-                        <Card
-                            title="Which foods are you searching for?"
-                            className={card}
-                        >
-                            <Text strong>
-                                Please note: We are currently only serving the San
-                                Francisco Bay Area. We will expand from there.
-                            </Text>
-                            <Divider className={divider} />
-                            <FoodSelect onChange={onChange} />
-                            <div className={overflowContainer}>
-                                {((filteredFarms.length > 0) ? filteredFarms : farms).map((farmData, i) => <FarmCard key={i} data={farmData} />)}
-                            </div>
-                        </Card>
-                    </Col>
+            <Col xs={24} sm={16} md={12} lg={10} xl={8} xxl={6}>
+                <Card
+                    title="Which foods are you searching for?"
+                    className={card}
+                >
+                    <Text strong>
+                        Please note: We are currently only serving the San
+                        Francisco Bay Area. We will expand from there.
+                    </Text>
+                    <Divider className={divider} />
+                    <FoodSelect onChange={onChange} />
+                    <div className={overflowContainer}>
+                        {(filteredFarms.length > 0 ? filteredFarms : farms).map(
+                            (farmData, i) => (
+                                <FarmCard key={i} data={farmData} />
+                            )
+                        )}
+                    </div>
+                </Card>
+            </Col>
         );
     }
 };

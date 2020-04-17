@@ -11,10 +11,7 @@ const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_API_TOKEN;
 const Map = () => {
     const { viewport, setViewport } = useContext(ViewportContext);
     const {
-        farmsData: {
-            farms,
-            filteredFarms
-        }
+        farmsData: { farms, filteredFarms }
     } = useContext(FarmsContext);
 
     const [hoverInfo, setHoverInfo] = useState(null);
@@ -23,35 +20,37 @@ const Map = () => {
     return (
         // <FarmsContext.Consumer>
         //     {({ farmsData: { farms, filteredFarms } }) => (
-                <div className={classes.base}>
-                    <ReactMapGL
-                        width="100%"
-                        height="100%"
-                        {...viewport}
-                        onViewportChange={viewport => {
-                            const { width, height, ...etc } = viewport;
-                            setViewport(etc);
-                        }}
-                        mapboxApiAccessToken={MAPBOX_TOKEN}
-                        mapStyle="mapbox://styles/mapbox/streets-v11"
-                    >
-                        {(filteredFarms.length > 0 ? filteredFarms : farms).map(({ Coordinates: coordinates, Name: name }, i) => (
-                            <Pins
-                                key={`pins-${i}`}
-                                name={name}
-                                onHover={isHovered => {
-                                    if (isHovered) {
-                                        setHoverInfo({ coordinates, name });
-                                    } else {
-                                        setHoverInfo(null);
-                                    }
-                                }}
-                                coordinates={coordinates}
-                            />
-                        ))}
-                        {renderPopup(hoverInfo)}
-                    </ReactMapGL>
-                </div>
+        <div className={classes.base}>
+            <ReactMapGL
+                width="100%"
+                height="100%"
+                {...viewport}
+                onViewportChange={viewport => {
+                    const { width, height, ...etc } = viewport;
+                    setViewport(etc);
+                }}
+                mapboxApiAccessToken={MAPBOX_TOKEN}
+                mapStyle="mapbox://styles/mapbox/streets-v11"
+            >
+                {(filteredFarms.length > 0 ? filteredFarms : farms).map(
+                    ({ Coordinates: coordinates, Name: name }, i) => (
+                        <Pins
+                            key={`pins-${i}`}
+                            name={name}
+                            onHover={isHovered => {
+                                if (isHovered) {
+                                    setHoverInfo({ coordinates, name });
+                                } else {
+                                    setHoverInfo(null);
+                                }
+                            }}
+                            coordinates={coordinates}
+                        />
+                    )
+                )}
+                {renderPopup(hoverInfo)}
+            </ReactMapGL>
+        </div>
         //     )}
         // </FarmsContext.Consumer>
     );
