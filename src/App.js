@@ -8,24 +8,36 @@ import MobileFooter from './components/MobileFooter';
 import AboutContent from './components/AboutContent';
 import { ViewportContextController } from './context/ViewportContext';
 import { FarmsContextController } from './context/FarmsContext.js';
+import farmListLogo from './resources/images/farmlist_cropped_logo.jpg';
 
 const App = props => {
     const classes = useStyles();
     const { Content, Header } = Layout;
     const [drawerVisible, setDrawerVisible] = useState(true);
+    const [showDescription, setShowDescription] = useState(false);
 
     return (
         <Div100vh>
             <Layout className={classes.base}>
                 <Header className={classes.header}>
-                  <img 
-                    className={classes.logo} 
-                    src='farmlist_cropped_logo.jpg' 
-                    alt="farmlist_logo">
-                  </img>
-                  <h3><a className={classes.about} href="#about">About</a></h3>
+                    <img
+                        className={classes.logo}
+                        src={farmListLogo}
+                        alt="farmlist_logo"
+                    />
+                    <h3>
+                        <a
+                            className={classes.about}
+                            onClick={() => {
+                                setShowDescription(!showDescription);
+                            }}
+                        >
+                            About
+                        </a>
+                    </h3>
                 </Header>
                 <Content>
+                    {showDescription ? <AboutContent /> : null}
                     <FarmsContextController>
                         <ViewportContextController>
                             <Mapbox />
@@ -40,7 +52,6 @@ const App = props => {
                 </Content>
                 <MobileFooter setDrawerVisible={setDrawerVisible} />
             </Layout>
-            <AboutContent id="about"/>
         </Div100vh>
     );
 };
@@ -65,7 +76,7 @@ const useStyles = createUseStyles({
         position: 'absolute'
     },
     logo: {
-        height: '80%',
+        height: '80%'
     },
     '@media (max-width: 575px)': {
         cardPadding: {
