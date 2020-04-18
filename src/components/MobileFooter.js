@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
         height: 60,
         backgroundColor: '#f2f4f5',
         width: '100%',
-        position: 'absolute',
+        position: 'fixed',
         bottom: 0,
         textAlign: 'center',
         zIndex: 2
