@@ -5,6 +5,7 @@ import Div100vh from 'react-div-100vh';
 import Mapbox from './components/mapbox/Mapbox.js';
 import FarmCardsContainer from './components/FarmCardsContainer';
 import MobileFooter from './components/MobileFooter';
+import AboutContent from './components/AboutContent';
 import { ViewportContextController } from './context/ViewportContext';
 import { FarmsContextController } from './context/FarmsContext.js';
 
@@ -17,7 +18,12 @@ const App = props => {
         <Div100vh>
             <Layout className={classes.base}>
                 <Header className={classes.header}>
-                    <h1>Help Local Farms, Fishers, and Ranchers</h1>
+                  <img 
+                    className={classes.logo} 
+                    src='farmlist_cropped_logo.jpg' 
+                    alt="farmlist_logo">
+                  </img>
+                  <h3><a className={classes.about} href="#about">About</a></h3>
                 </Header>
                 <Content>
                     <FarmsContextController>
@@ -34,6 +40,7 @@ const App = props => {
                 </Content>
                 <MobileFooter setDrawerVisible={setDrawerVisible} />
             </Layout>
+            <AboutContent id="about"/>
         </Div100vh>
     );
 };
@@ -46,13 +53,19 @@ const useStyles = createUseStyles({
         }
     },
     header: {
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        display: 'flex',
+        'justify-content': 'space-between',
+        'align-items': 'center'
     },
     cardPadding: {
         padding: 20
     },
     mapCard: {
         position: 'absolute'
+    },
+    logo: {
+        height: '80%',
     },
     '@media (max-width: 575px)': {
         cardPadding: {
