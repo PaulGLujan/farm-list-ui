@@ -16,7 +16,7 @@ const AboutContent = () => {
                 highlight these amazing purveyors and connect them with
                 passionate people who want access to their products. If you're a
                 farmer or supplier and would like to be added to our list,
-                please fill out this form [add link] and we'll add you to
+                please shoot an email over to codybreene@gmail.com and we'll add you to
                 Farmlist.
             </p>
         </div>
