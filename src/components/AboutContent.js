@@ -27,7 +27,7 @@ const useStyles = createUseStyles({
     base: {
         padding: '8px 16px',
         '& p': {
-            margin: 0
+            margin: '5px 20px'
         }
     }
 });
