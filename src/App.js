@@ -25,7 +25,7 @@ const App = props => {
                         src={farmListLogo}
                         alt="farmlist_logo"
                     />
-                    <h3>
+                    <h3 className={classes.about_link}>
                         <a
                             className={classes.about}
                             onClick={() => {
@@ -77,6 +77,9 @@ const useStyles = createUseStyles({
     },
     logo: {
         height: '80%'
+    },
+    about_link: {
+        'padding-top': '8px'
     },
     '@media (max-width: 575px)': {
         cardPadding: {
