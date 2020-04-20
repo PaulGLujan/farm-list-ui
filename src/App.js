@@ -25,6 +25,7 @@ const App = props => {
                         src={farmListLogo}
                         alt="farmlist_logo"
                     />
+                    <h3>Master git branch</h3>
                     <h3 className={classes.about_link}>
                         <a
                             className={classes.about}
