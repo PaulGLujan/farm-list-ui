@@ -16,8 +16,8 @@ const AboutContent = () => {
                 highlight these amazing purveyors and connect them with
                 passionate people who want access to their products. If you're a
                 farmer or supplier and would like to be added to our list,
-                please shoot an email over to codybreene@gmail.com and we'll add you to
-                Farmlist.
+                please shoot an email over to codybreene@gmail.com and we'll add
+                you to Farmlist.
             </p>
         </div>
     );
@@ -25,9 +25,9 @@ const AboutContent = () => {
 
 const useStyles = createUseStyles({
     base: {
-        padding: '8px 16px',
+        padding: '13px 36px',
         '& p': {
-            margin: '5px 20px'
+            margin: 0
         }
     }
 });
