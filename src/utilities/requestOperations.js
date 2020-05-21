@@ -2,7 +2,8 @@ export const getAllAirtableData = async () => {
     try {
         const farms = [];
         const farmFoodTypes = [];
-        // Allows for api params to be passed in from Airtable api
+
+        // AWS farmlist-api-prod-list endpoint
         const response = await fetch('https://h71hu4fqxd.execute-api.us-west-2.amazonaws.com/prod/farms', { method: 'POST' })
         const data = await response.json()
 
