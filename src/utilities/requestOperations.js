@@ -1,21 +1,13 @@
-const AirtablePlus = require('airtable-plus');
-
-// BaseID, apiKey, and tableName can alternatively be set by environment variables
-const airtable = new AirtablePlus({
-    baseID: 'app8yNh5HiXXbpXRe',
-    apiKey: 'AIRTBABLE_API_KEY',
-    tableName: 'suppliers'
-});
-
 export const getAllAirtableData = async () => {
     try {
-        // Allows for api params to be passed in from Airtable api
-        const response = await airtable.read({});
-
         const farms = [];
         const farmFoodTypes = [];
 
-        response.forEach(record => {
+        // AWS farmlist-api-prod-list endpoint
+        const response = await fetch('https://h71hu4fqxd.execute-api.us-west-2.amazonaws.com/prod/farms', { method: 'POST' })
+        const data = await response.json()
+
+        data.forEach(record => {
             const {
                 Name,
                 About,
