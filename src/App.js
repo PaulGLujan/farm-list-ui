@@ -26,14 +26,14 @@ const App = props => {
                         alt="farmlist_logo"
                     />
                     <h3 className={classes.about_link}>
-                        <a
+                        <button
                             className={classes.about}
                             onClick={() => {
                                 setShowDescription(!showDescription);
                             }}
                         >
                             About
-                        </a>
+                        </button>
                     </h3>
                 </Header>
                 <Content>
